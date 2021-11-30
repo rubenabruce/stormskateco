@@ -1,0 +1,27 @@
+.homepage {
+	background-color: black;
+	height: 100vh;
+	width: 100vw;
+}
+
+.spinningLogo {
+	height: 80%;
+	position: relative;
+	top: -10%;
+}
+
+.optionsCont {
+	height: 35%;
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-left: 10%;
+	position: absolute;
+	bottom: 20%;
+}
+
+.option {
+	height: 100%;
+	cursor: pointer;
+}
