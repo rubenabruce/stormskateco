@@ -1,0 +1,17 @@
+.shop-item {
+	width: 90%;
+	margin: auto;
+
+	.item-image-cont {
+		width: 100%;
+		height: 25vw;
+		overflow: hidden;
+		@media screen and (max-width: 600px) {
+			height: 40vw;
+		}
+
+		.item-image {
+			width: 100%;
+		}
+	}
+}

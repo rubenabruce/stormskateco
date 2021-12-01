@@ -5,18 +5,27 @@ import vxSpin from "../../assets/vx1000.gif";
 import tShirtSpin from "../../assets/tshirtGif.gif";
 
 import "./homepage.styles.scss";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
 	return (
 		<div className="homepage">
 			<img className="spinningLogo" src={textLogoSpin} alt="Storm logo" />
 			<div className="optionsCont">
-				<img className="spinningVX option" src={vxSpin} alt="Spinning VX1000" />
-				<img
-					className="spinningTshirt option"
-					src={tShirtSpin}
-					alt="Spinning T-shirt"
-				/>
+				<Link to={"/videos"}>
+					<img
+						className="spinningVX option"
+						src={vxSpin}
+						alt="Spinning VX1000"
+					/>
+				</Link>
+				<Link to={"/shop"}>
+					<img
+						className="spinningTshirt option"
+						src={tShirtSpin}
+						alt="Spinning T-shirt"
+					/>
+				</Link>
 			</div>
 		</div>
 	);
