@@ -4,7 +4,7 @@ import textLogoSpin from "../../assets/stormTextGif.gif";
 import vxSpin from "../../assets/vx1000.gif";
 import tShirtSpin from "../../assets/tshirtGif.gif";
 
-import "./homepage.css";
+import "./homepage.styles.scss";
 
 const Homepage = () => {
 	return (
