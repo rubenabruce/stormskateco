@@ -1,15 +1,18 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import "./App.css";
+import Header from "./components/header/header.component";
 
 import Homepage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shoppage/shoppage.component";
 import VideoPage from "./pages/videopage/videopage.component";
 
 function App() {
+	let location = useLocation();
 	return (
 		<div className="App">
+			{location.pathname === "/" ? "" : <Header />}
 			<Routes>
 				<Route exact path="/" element={<Homepage />} />
 				<Route path="/shop" element={<ShopPage />} />

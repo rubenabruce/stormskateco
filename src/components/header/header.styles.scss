@@ -1,0 +1,17 @@
+.header {
+	height: 80px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 10%;
+	position: relative;
+	background-color: black;
+
+	& > a {
+		height: 100%;
+	}
+
+	& > a > img {
+		height: 100%;
+	}
+}
