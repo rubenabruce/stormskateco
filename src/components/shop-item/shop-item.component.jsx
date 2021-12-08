@@ -1,20 +1,17 @@
 import React from "react";
 
-import "./shop-item.styles.scss";
+import { ShopItemCont, ItemImageCont, NamePriceCont } from "./shop-item.styles";
 
 const ShopItem = ({ item: { imageUrl, name, price } }) => {
 	return (
-		<div className="shop-item">
-			<div
-				className="item-image-cont"
-				style={{ backgroundImage: `url(${imageUrl})` }}
-			>
-				<div className="name-price-cont">
+		<ShopItemCont>
+			<ItemImageCont imageUrl={imageUrl}>
+				<NamePriceCont>
 					<p className="item-name">{name}</p>
 					<p className="item-price">{price}</p>
-				</div>
-			</div>
-		</div>
+				</NamePriceCont>
+			</ItemImageCont>
+		</ShopItemCont>
 	);
 };
 

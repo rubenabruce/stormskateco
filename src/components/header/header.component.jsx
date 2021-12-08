@@ -6,13 +6,12 @@ import stormLogo from "../../assets/stormLogoGif.gif";
 import videoLogo from "../../assets/vx1000.gif";
 import garmLogo from "../../assets/tshirtGif.gif";
 
-import "./header.styles.scss";
+import { HeaderCont } from "./header.styles.js";
 
 const Header = () => {
 	let location = useLocation();
-	console.log(location.pathname);
 	return (
-		<div className="header">
+		<HeaderCont invert={location.pathname === "/shop"}>
 			<Link to="/videos">
 				<img src={videoLogo} alt="Spinning vx1000 camera" />
 			</Link>
@@ -22,7 +21,7 @@ const Header = () => {
 			<Link to="/shop">
 				<img src={garmLogo} alt="Spinning t-shirt" />
 			</Link>
-		</div>
+		</HeaderCont>
 	);
 };
 
