@@ -18,7 +18,7 @@ export const ItemImageCont = styled.div`
 	width: 100%;
 	height: 25vw;
 	overflow: hidden;
-	background-image: black url(${({ imageUrl }) => imageUrl});
+	background-image: url(${({ imageUrl }) => imageUrl});
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;

@@ -6,12 +6,25 @@ export const HomepageCont = styled.div`
 	width: 100vw;
 	display: flex;
 	justify-content: center;
+
+	@media screen and (max-width: 1000px) {
+		flex-direction: column;
+		overflow: hidden scroll;
+		align-items: center;
+	}
 `;
 
 export const SpinningLogo = styled.img`
 	height: 80%;
 	position: relative;
 	top: -10%;
+
+	@media screen and (max-width: 1000px) {
+		height: unset;
+		width: 100%;
+		top: unset;
+		margin-top: 50vh;
+	}
 `;
 
 export const OptionsCont = styled.div`
@@ -22,9 +35,20 @@ export const OptionsCont = styled.div`
 	justify-content: space-between;
 	position: absolute;
 	bottom: 20%;
+	@media screen and (max-width: 1000px) {
+		flex-direction: column;
+		align-items: center;
+		height: unset;
+		position: relative;
+		display: contents;
+	}
 `;
 
 export const Option = styled.img`
 	height: 70%;
 	cursor: pointer;
+
+	@media screen and (max-width: 500px) {
+		width: 100%;
+	}
 `;
