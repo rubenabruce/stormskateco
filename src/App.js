@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import "./App.css";
+import CartSlider from "./components/cart-slider/cart-slider.component";
 import Header from "./components/header/header.component";
 
 import Homepage from "./pages/homepage/homepage.component";
@@ -20,6 +21,7 @@ function App() {
 				<Route path="/shop/:id" element={<ShopItemPage />} />
 				<Route path="/videos" element={<VideoPage />} />
 			</Routes>
+			{location.pathname.includes("shop") ? <CartSlider /> : null}
 		</div>
 	);
 }
