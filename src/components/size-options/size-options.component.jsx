@@ -1,11 +1,48 @@
 import React from "react";
 
-const SizeOptions = () => {
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { updateSize } from "../../redux/shop-item/shop-item.actions";
+import { selectSize } from "../../redux/shop-item/shop-item.selector";
+
+import { OptionBtn, SizeOptionsCont } from "./size-options.styles";
+
+const SizeOptions = ({ size, updateSize }) => {
+	console.log(size);
+
+	const handleClick = (size) => {
+		console.log(size);
+		updateSize(size);
+	};
+
 	return (
-		<div>
-			<div></div>
-		</div>
+		<SizeOptionsCont activeSize={size}>
+			<OptionBtn className="s" onClick={() => handleClick("s")}>
+				S
+			</OptionBtn>
+			<OptionBtn className="m" onClick={() => handleClick("m")}>
+				M
+			</OptionBtn>
+			<OptionBtn className="l" onClick={() => handleClick("l")}>
+				L
+			</OptionBtn>
+			<OptionBtn className="xl" onClick={() => handleClick("xl")}>
+				XL
+			</OptionBtn>
+			<OptionBtn className="xxl" onClick={() => handleClick("xxl")}>
+				XXL
+			</OptionBtn>
+		</SizeOptionsCont>
 	);
 };
 
-export default SizeOptions;
+const mapStateToProps = createStructuredSelector({
+	size: selectSize,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	updateSize: (newSize) => dispatch(updateSize(newSize)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SizeOptions);

@@ -1,10 +1,12 @@
 import React from "react";
 
-const ItemImages = () => {
+import { ItemImagesCont, MainImage } from "./item-images.styles";
+
+const ItemImages = ({ imageUrl, imageAlt }) => {
 	return (
-		<div>
-			<div></div>
-		</div>
+		<ItemImagesCont>
+			<MainImage src={imageUrl} alt={imageAlt} />
+		</ItemImagesCont>
 	);
 };
 
