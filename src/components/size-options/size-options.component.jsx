@@ -9,10 +9,7 @@ import { selectSize } from "../../redux/shop-item/shop-item.selector";
 import { OptionBtn, SizeOptionsCont } from "./size-options.styles";
 
 const SizeOptions = ({ size, updateSize }) => {
-	console.log(size);
-
 	const handleClick = (size) => {
-		console.log(size);
 		updateSize(size);
 	};
 

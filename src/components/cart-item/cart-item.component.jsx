@@ -1,12 +1,30 @@
 import React from "react";
 
-import { CartItemCont, ImageCont, ItemDetails } from "./cart-item.styles";
+import QuantitySelector from "../quantity-selector/quantity-selector.component";
 
-const CartItem = (item) => {
+import {
+	CartItemCont,
+	ImageCont,
+	ItemDetails,
+	Detail,
+} from "./cart-item.styles";
+
+const CartItem = ({ item }) => {
+	console.log(item);
 	return (
 		<CartItemCont>
-			<ImageCont src={item.src} alt={item.name} />
-			<ItemDetails></ItemDetails>
+			<ImageCont src={item.imageUrl} alt={item.name} />
+			<ItemDetails>
+				<Detail>{item.name.toUpperCase()}</Detail>
+				<Detail>{item.size.toUpperCase()}</Detail>
+				<Detail>£{item.price}</Detail>
+				<QuantitySelector
+					item
+					otherStyles={
+						"margin-bottom: 0; > input {background-color: transparent; color: white;} "
+					}
+				/>
+			</ItemDetails>
 		</CartItemCont>
 	);
 };

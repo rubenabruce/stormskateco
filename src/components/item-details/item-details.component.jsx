@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+
+import { addItem } from "../../redux/cart/cart.actions";
 import { selectSize } from "../../redux/shop-item/shop-item.selector";
 
 import CustomButton from "../custom-button/custom-button.component";
@@ -16,8 +18,19 @@ import {
 	Label,
 } from "./item-details.styles";
 
-const ItemDetails = ({ item: { id, name, price, sizes }, size }) => {
-	console.log(id);
+const ItemDetails = ({
+	item: { id, name, price, imageUrl, sizes },
+	size,
+	addItem,
+}) => {
+	let item = { id, name, price, imageUrl, size };
+
+	const handleClick = () => {
+		if (sizes[size] >= 1) {
+			addItem(item);
+		}
+	};
+
 	return (
 		<ItemDetailsCont>
 			<Name>{name.toUpperCase()}</Name>
@@ -33,7 +46,10 @@ const ItemDetails = ({ item: { id, name, price, sizes }, size }) => {
 				<Label>QUANTITY:</Label>
 				<QuantitySelector sizes={sizes} />
 			</ItemOption>
-			<CustomButton>
+			<CustomButton
+				disabled={!(sizes[size] >= 1)}
+				onClick={() => handleClick()}
+			>
 				{sizes[size] >= 1 ? "ADD TO CART" : "SOLD OUT"}
 			</CustomButton>
 		</ItemDetailsCont>
@@ -44,4 +60,8 @@ const mapStateToProps = createStructuredSelector({
 	size: selectSize,
 });
 
-export default connect(mapStateToProps)(ItemDetails);
+const mapDispatchToProps = (dispatch) => ({
+	addItem: (item) => dispatch(addItem(item)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemDetails);

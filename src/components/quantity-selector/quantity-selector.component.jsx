@@ -10,7 +10,7 @@ import {
 	QuantitySelectorCont,
 } from "./quantity-selector.styles";
 
-const QuantitySelector = ({ sizes, size }) => {
+const QuantitySelector = ({ sizes, size, ...props }) => {
 	const [quantity, setQuantity] = useState(1);
 
 	const handleDecrease = () => {
@@ -24,7 +24,7 @@ const QuantitySelector = ({ sizes, size }) => {
 	};
 
 	return (
-		<QuantitySelectorCont>
+		<QuantitySelectorCont {...props}>
 			<IncDecCont onClick={handleDecrease}>-</IncDecCont>
 			<QuantityNum type="text" pattern="[0-9]*" value={quantity} readOnly />
 			<IncDecCont onClick={handleIncrease}>+</IncDecCont>

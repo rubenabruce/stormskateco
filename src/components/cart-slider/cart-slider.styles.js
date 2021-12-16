@@ -8,6 +8,7 @@ export const CartSliderCont = styled.div`
 	right: ${({ open }) => (open ? "0;" : "-400")}px;
 	transition: right 500ms ease-in-out;
 	background-color: black;
+	color: white;
 
 	/* &:before {
 		content: "Cart";
@@ -28,7 +29,7 @@ export const CartTab = styled.div`
 	left: -110px;
 	transform: rotate(-90deg);
 	top: 45%;
-	position: relative;
+	position: absolute;
 	color: white;
 	text-align: center;
 	display: flex;
@@ -40,6 +41,25 @@ export const CartTab = styled.div`
 	&:hover {
 		background-color: #393939;
 	}
+`;
+
+export const CartItemsCont = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	height: 100%;
+	margin: 40px auto;
+	overflow-y: scroll;
+	::-webkit-scrollbar {
+		background-color: transparent;
+	}
+`;
+
+export const CartTitle = styled.h2`
+	width: 100%;
+	text-align: center;
 `;
 
 export const EmptyMessage = styled.span`
