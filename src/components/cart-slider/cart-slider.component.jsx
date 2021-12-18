@@ -18,7 +18,6 @@ import {
 
 const CartSlider = ({ cartItems }) => {
 	const [open, setOpen] = useState(false);
-	console.log(cartItems);
 	return (
 		<CartSliderCont open={open}>
 			<CartTab onClick={() => setOpen(!open)}>
@@ -31,7 +30,10 @@ const CartSlider = ({ cartItems }) => {
 				) : (
 					<EmptyMessage>Your cart is empty</EmptyMessage>
 				)}
-				<CustomButton inverted style={{ width: "90%" }}>
+				<CustomButton
+					inverted
+					style={{ width: "90%", margin: "20px 0 60px 0" }}
+				>
 					GO TO CHECKOUT
 				</CustomButton>
 			</CartItemsCont>

@@ -44,11 +44,12 @@ const ItemDetails = ({
 			</ItemOption>
 			<ItemOption>
 				<Label>QUANTITY:</Label>
-				<QuantitySelector sizes={sizes} />
+				<QuantitySelector sizes={sizes} size={size} />
 			</ItemOption>
 			<CustomButton
 				disabled={!(sizes[size] >= 1)}
 				onClick={() => handleClick()}
+				style={{ margin: "20px 0" }}
 			>
 				{sizes[size] >= 1 ? "ADD TO CART" : "SOLD OUT"}
 			</CustomButton>

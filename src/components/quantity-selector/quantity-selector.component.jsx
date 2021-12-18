@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+// import { connect } from "react-redux";
+// import { createStructuredSelector } from "reselect";
 
-import { selectSize } from "../../redux/shop-item/shop-item.selector";
+// import { selectSize } from "../../redux/shop-item/shop-item.selector";
 
 import {
 	IncDecCont,
@@ -32,8 +32,8 @@ const QuantitySelector = ({ sizes, size, ...props }) => {
 	);
 };
 
-const mapStateToProps = createStructuredSelector({
-	size: selectSize,
-});
+// const mapStateToProps = createStructuredSelector({
+// 	size: selectSize,
+// });
 
-export default connect(mapStateToProps)(QuantitySelector);
+export default QuantitySelector;

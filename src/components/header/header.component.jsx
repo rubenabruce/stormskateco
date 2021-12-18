@@ -11,7 +11,7 @@ import { HeaderCont } from "./header.styles.js";
 const Header = () => {
 	let location = useLocation();
 	return (
-		<HeaderCont invert={location.pathname === "/shop"}>
+		<HeaderCont invert={location.pathname.includes("/shop")}>
 			<Link to="/videos">
 				<img src={videoLogo} alt="Spinning vx1000 camera" />
 			</Link>

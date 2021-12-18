@@ -17,8 +17,12 @@ function App() {
 			{location.pathname === "/" ? "" : <Header />}
 			<Routes>
 				<Route exact path="/" element={<Homepage />} />
+				<Route
+					exact
+					path="/shop/:id"
+					element={<ShopItemPage location={location} />}
+				/>
 				<Route path="/shop" element={<ShopPage />} />
-				<Route path="/shop/:id" element={<ShopItemPage />} />
 				<Route path="/videos" element={<VideoPage />} />
 			</Routes>
 			{location.pathname.includes("shop") ? <CartSlider /> : null}

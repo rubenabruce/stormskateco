@@ -10,7 +10,6 @@ import {
 } from "./cart-item.styles";
 
 const CartItem = ({ item }) => {
-	console.log(item);
 	return (
 		<CartItemCont>
 			<ImageCont src={item.imageUrl} alt={item.name} />

@@ -1,16 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
 
 import ItemDetails from "../../components/item-details/item-details.component";
 import ItemImages from "../../components/item-images/item-images.component";
-
-import SHOP_DATA from "../shoppage/shop.data";
+import { selectShopItemById } from "../../redux/shop/shop.selector";
 
 import { ItemPageCont, MainItem } from "./item-page.styles";
 
-const ShopItemPage = () => {
-	const id = useParams();
-	let item = SHOP_DATA.items[id.id - 1];
+const ShopItemPage = ({ item }) => {
 	return (
 		<ItemPageCont>
 			<MainItem>
@@ -22,4 +19,12 @@ const ShopItemPage = () => {
 	);
 };
 
-export default ShopItemPage;
+const mapStateToProps = (state, ownProps) => ({
+	item: selectShopItemById(
+		ownProps.location.pathname.substring(
+			ownProps.location.pathname.substring(1).search(/[/]/g) + 2
+		) - 1
+	)(state),
+});
+
+export default connect(mapStateToProps)(ShopItemPage);
