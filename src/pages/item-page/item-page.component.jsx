@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => ({
 	item: selectShopItemById(
 		ownProps.location.pathname.substring(
 			ownProps.location.pathname.substring(1).search(/[/]/g) + 2
-		) - 1
+		)
 	)(state),
 });
 

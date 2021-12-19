@@ -18,7 +18,8 @@ const CartItem = ({ item }) => {
 				<Detail>{item.size.toUpperCase()}</Detail>
 				<Detail>£{item.price}</Detail>
 				<QuantitySelector
-					item
+					type={"cart-item"}
+					item={item}
 					otherStyles={
 						"margin-bottom: 0; > input {background-color: transparent; color: white;} "
 					}

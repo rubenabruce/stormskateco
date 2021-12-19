@@ -1,6 +1,6 @@
 import { shopItemActionTypes } from "./shop-item.types";
 
-export const updateQuantity = (newQuantity) => ({
+export const updateShopItemQuantity = (newQuantity) => ({
 	type: shopItemActionTypes.UPDATE_QUANTITY,
 	payload: newQuantity,
 });

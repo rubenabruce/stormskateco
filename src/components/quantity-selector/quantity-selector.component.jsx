@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-// import { connect } from "react-redux";
-// import { createStructuredSelector } from "reselect";
+import { connect } from "react-redux";
 
-// import { selectSize } from "../../redux/shop-item/shop-item.selector";
+import { updateCartItemQuantity } from "../../redux/cart/cart.actions";
+import { updateShopItemQuantity } from "../../redux/shop-item/shop-item.actions";
+import { selectShopItemById } from "../../redux/shop/shop.selector.js";
 
 import {
 	IncDecCont,
@@ -10,17 +11,37 @@ import {
 	QuantitySelectorCont,
 } from "./quantity-selector.styles";
 
-const QuantitySelector = ({ sizes, size, ...props }) => {
-	const [quantity, setQuantity] = useState(1);
+const QuantitySelector = ({
+	type,
+	item,
+	shopItem: { sizes },
+	updateCartItemQuantity,
+	updateShopItemQuantity,
+	...props
+}) => {
+	console.log(item.quantity);
+	const [quantity, setQuantity] = useState(item ? item.quantity : 1);
 
 	const handleDecrease = () => {
-		quantity > 1 ? setQuantity(quantity - 1) : setQuantity(quantity);
-		console.log(quantity);
+		if (quantity > 1) {
+			setQuantity(quantity - 1);
+			type === "shop-item"
+				? updateShopItemQuantity(quantity - 1)
+				: updateCartItemQuantity({ ...item, quantity: quantity - 1 });
+		} else {
+			setQuantity(quantity);
+		}
 	};
 
 	const handleIncrease = () => {
-		console.log("sizes", sizes, "size", size);
-		quantity < sizes[size] ? setQuantity(quantity + 1) : setQuantity(quantity);
+		if (quantity < sizes[item.size]) {
+			setQuantity(quantity + 1);
+			type === "shop-item"
+				? updateShopItemQuantity(quantity + 1)
+				: updateCartItemQuantity({ ...item, quantity: quantity + 1 });
+		} else {
+			setQuantity(quantity);
+		}
 	};
 
 	return (
@@ -32,8 +53,15 @@ const QuantitySelector = ({ sizes, size, ...props }) => {
 	);
 };
 
-// const mapStateToProps = createStructuredSelector({
-// 	size: selectSize,
-// });
+const mapStateToProps = (state, ownProps) => ({
+	shopItem: selectShopItemById(ownProps.item.id)(state),
+});
 
-export default QuantitySelector;
+const mapDispatchToProps = (dispatch) => ({
+	updateShopItemQuantity: (quantity) =>
+		dispatch(updateShopItemQuantity(quantity)),
+	updateCartItemQuantity: (quantity) =>
+		dispatch(updateCartItemQuantity(quantity)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuantitySelector);

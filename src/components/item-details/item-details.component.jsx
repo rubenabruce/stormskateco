@@ -3,7 +3,14 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { addItem } from "../../redux/cart/cart.actions";
-import { selectSize } from "../../redux/shop-item/shop-item.selector";
+import {
+	selectCartItems,
+	selectCartItemsById,
+} from "../../redux/cart/cart.selector";
+import {
+	selectQuantity,
+	selectSize,
+} from "../../redux/shop-item/shop-item.selector";
 
 import CustomButton from "../custom-button/custom-button.component";
 import QuantitySelector from "../quantity-selector/quantity-selector.component";
@@ -21,12 +28,33 @@ import {
 const ItemDetails = ({
 	item: { id, name, price, imageUrl, sizes },
 	size,
+	quantity,
 	addItem,
+	cartItems,
 }) => {
-	let item = { id, name, price, imageUrl, size };
+	let item = { id, name, price, imageUrl, size, quantity };
+	// Checks to find if the current item has matching id and size to an item within the cart to know whether
+	// to add to cart item or add NEW cart item
+	let cartItem = cartItems
+		? cartItems.find(
+				(currentCartItem) =>
+					currentCartItem.id === item.id && currentCartItem.size === item.size
+		  )
+		: undefined;
 
 	const handleClick = () => {
+		// sizes[size] >= 1 checks if item is in stock
 		if (sizes[size] >= 1) {
+			if (cartItem) {
+				if (
+					cartItem.size === size
+						? sizes[size] >= cartItem.quantity + quantity
+						: true
+				) {
+					addItem(item);
+				}
+				return;
+			}
 			addItem(item);
 		}
 	};
@@ -44,7 +72,7 @@ const ItemDetails = ({
 			</ItemOption>
 			<ItemOption>
 				<Label>QUANTITY:</Label>
-				<QuantitySelector sizes={sizes} size={size} />
+				<QuantitySelector item={item} type={"shop-item"} sizes={sizes} />
 			</ItemOption>
 			<CustomButton
 				disabled={!(sizes[size] >= 1)}
@@ -59,6 +87,8 @@ const ItemDetails = ({
 
 const mapStateToProps = createStructuredSelector({
 	size: selectSize,
+	quantity: selectQuantity,
+	cartItems: selectCartItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({
