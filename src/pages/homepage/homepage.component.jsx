@@ -1,8 +1,11 @@
 import React from "react";
 
+import StormBackgroundTrans from "../../assets/stormBackground.gif";
 import textLogoSpin from "../../assets/stormTextGif.gif";
+import textLogoSpinTrans from "../../assets/stormTextGifTrans.gif";
 import vxSpin from "../../assets/vx1000.gif";
 import tShirtSpin from "../../assets/tshirtGif.gif";
+import tShirtSpinTrans from "../../assets/tshirtGifTrans2.gif";
 
 import {
 	HomepageCont,
@@ -15,10 +18,10 @@ import { Link } from "react-router-dom";
 
 const Homepage = () => {
 	return (
-		<HomepageCont>
+		<HomepageCont style={{ background: `url(${StormBackgroundTrans})` }}>
 			<SpinningLogo
 				className="spinningLogo"
-				src={textLogoSpin}
+				src={textLogoSpinTrans}
 				alt="Storm logo"
 			/>
 			<OptionsCont className="optionsCont">
@@ -32,7 +35,7 @@ const Homepage = () => {
 				<Link to={"/shop"}>
 					<Option
 						className="spinningTshirt option"
-						src={tShirtSpin}
+						src={tShirtSpinTrans}
 						alt="Spinning T-shirt"
 					/>
 				</Link>

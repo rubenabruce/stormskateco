@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { ReactComponent as BinSvg } from "../../assets/bin.svg";
+
 export const CartItemCont = styled.div`
 	width: 90%;
 	height: 7rem;
@@ -22,4 +24,16 @@ export const Detail = styled.p`
 	margin: 0.5rem 0;
 	margin-block-start: 0;
 	margin-block-end: 0;
+`;
+
+export const QuantBinCont = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-top: 20px;
+`;
+
+export const BinCont = styled(BinSvg)`
+	align-self: center;
+	cursor: pointer;
 `;

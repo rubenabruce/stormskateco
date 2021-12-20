@@ -3,10 +3,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import { addItem } from "../../redux/cart/cart.actions";
-import {
-	selectCartItems,
-	selectCartItemsById,
-} from "../../redux/cart/cart.selector";
+import { selectCartItems } from "../../redux/cart/cart.selector";
 import {
 	selectQuantity,
 	selectSize,

@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { v4 as uuidv4 } from "uuid";
 
-import { selectCartItems } from "../../redux/cart/cart.selector";
+import {
+	selectCartItems,
+	selectCartQuantity,
+} from "../../redux/cart/cart.selector";
 
 import CartItem from "../cart-item/cart-item.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -16,26 +19,30 @@ import {
 	EmptyMessage,
 } from "./cart-slider.styles";
 
-const CartSlider = ({ cartItems }) => {
+const CartSlider = ({ cartItems, cartQuantity }) => {
 	const [open, setOpen] = useState(false);
 	return (
 		<CartSliderCont open={open}>
 			<CartTab onClick={() => setOpen(!open)}>
-				<p>Cart ({cartItems.length})</p>
+				<p>Cart ({cartQuantity})</p>
 			</CartTab>
 			<CartItemsCont>
-				<CartTitle>Cart ({cartItems.length})</CartTitle>
+				<CartTitle>Cart ({cartQuantity})</CartTitle>
 				{cartItems.length ? (
 					cartItems.map((item) => <CartItem key={uuidv4()} item={item} />)
 				) : (
 					<EmptyMessage>Your cart is empty</EmptyMessage>
 				)}
-				<CustomButton
-					inverted
-					style={{ width: "90%", margin: "20px 0 60px 0" }}
-				>
-					GO TO CHECKOUT
-				</CustomButton>
+				{cartItems.length ? (
+					<CustomButton
+						inverted
+						style={{ width: "90%", margin: "20px 0 60px 0" }}
+					>
+						GO TO CHECKOUT
+					</CustomButton>
+				) : (
+					""
+				)}
 			</CartItemsCont>
 		</CartSliderCont>
 	);
@@ -43,6 +50,7 @@ const CartSlider = ({ cartItems }) => {
 
 const mapStateToProps = createStructuredSelector({
 	cartItems: selectCartItems,
+	cartQuantity: selectCartQuantity,
 });
 
 export default connect(mapStateToProps)(CartSlider);

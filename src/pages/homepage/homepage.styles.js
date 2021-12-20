@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const HomepageCont = styled.div`
+	background-image: url("../../assets/stormBackground.gif");
+	background-size: cover;
 	background-color: black;
 	height: 100vh;
 	width: 100vw;
@@ -35,6 +37,11 @@ export const OptionsCont = styled.div`
 	justify-content: space-between;
 	position: absolute;
 	bottom: 20%;
+
+	& .spinningTshirt {
+		margin-right: 100px;
+	}
+
 	@media screen and (max-width: 1000px) {
 		flex-direction: column;
 		align-items: center;
@@ -47,6 +54,10 @@ export const OptionsCont = styled.div`
 export const Option = styled.img`
 	height: 70%;
 	cursor: pointer;
+
+	:hover {
+		filter: invert(1);
+	}
 
 	@media screen and (max-width: 500px) {
 		width: 100%;
