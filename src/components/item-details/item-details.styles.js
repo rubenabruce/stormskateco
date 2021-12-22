@@ -2,6 +2,11 @@ import styled from "styled-components";
 
 export const ItemDetailsCont = styled.div`
 	width: 40%;
+
+	@media screen and (max-width: 800px) {
+		width: 100%;
+		margin-top: 1rem;
+	}
 `;
 
 export const Name = styled.h2`

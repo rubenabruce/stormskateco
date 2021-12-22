@@ -48,6 +48,10 @@ export const OptionsCont = styled.div`
 		height: unset;
 		position: relative;
 		display: contents;
+
+		& .spinningTshirt {
+			margin-right: unset;
+		}
 	}
 `;
 

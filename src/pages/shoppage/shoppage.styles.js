@@ -16,9 +16,11 @@ export const ShopGrid = styled.div`
 	row-gap: 20px;
 	width: 80%;
 	margin-top: 30px;
+	column-gap: 20px;
 
 	@media screen and (max-width: 600px) {
 		width: 90%;
+
 		grid-template-columns: repeat(2, 1fr);
 	}
 `;

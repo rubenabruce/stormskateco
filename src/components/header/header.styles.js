@@ -9,6 +9,10 @@ export const HeaderCont = styled.div`
 	position: relative;
 	background-color: ${({ invert }) => (invert ? "white" : "black")};
 
+	@media screen and (max-width: 800px) {
+		padding: 10px 5%;
+	}
+
 	& > a {
 		height: 100%;
 		width: 140px;

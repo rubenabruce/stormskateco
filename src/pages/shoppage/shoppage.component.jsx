@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { v4 as uuidv4 } from "uuid";
 
 import { selectShopItems } from "../../redux/shop/shop.selector";
 
@@ -13,7 +14,7 @@ const ShopPage = ({ shopItems }) => {
 		<ShopPageCont>
 			<ShopGrid>
 				{shopItems.map((item) => (
-					<ShopItem key={item.id} item={item} />
+					<ShopItem key={uuidv4()} item={item} />
 				))}
 			</ShopGrid>
 		</ShopPageCont>

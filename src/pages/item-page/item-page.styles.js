@@ -13,11 +13,11 @@ export const MainItem = styled.section`
 	display: flex;
 	margin-top: 2rem;
 	width: 70%;
-	height: 80vh;
 	justify-content: space-between;
 
-	@media screen and (max-width: 600px) {
+	@media screen and (max-width: 800px) {
 		flex-direction: column;
 		height: unset;
+		width: 90%;
 	}
 `;
