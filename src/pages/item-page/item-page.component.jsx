@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import FeaturedItems from "../../components/featured-items/featured-items.component";
@@ -10,6 +10,10 @@ import { selectShopItemById } from "../../redux/shop/shop.selector";
 import { ItemPageCont, MainItem } from "./item-page.styles";
 
 const ShopItemPage = ({ item }) => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	});
+
 	return (
 		<ItemPageCont>
 			<MainItem>

@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const ItemDetailsCont = styled.div`
 	width: 40%;
+	position: sticky;
+	top: 4rem;
+	height: 100%;
 
 	@media screen and (max-width: 800px) {
 		width: 100%;

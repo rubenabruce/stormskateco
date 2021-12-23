@@ -1,10 +1,8 @@
 import React from "react";
 
 import StormBackgroundTrans from "../../assets/stormBackground.gif";
-import textLogoSpin from "../../assets/stormTextGif.gif";
 import textLogoSpinTrans from "../../assets/stormTextGifTrans.gif";
 import vxSpin from "../../assets/vx1000.gif";
-import tShirtSpin from "../../assets/tshirtGif.gif";
 import tShirtSpinTrans from "../../assets/tshirtGifTrans2.gif";
 
 import {
