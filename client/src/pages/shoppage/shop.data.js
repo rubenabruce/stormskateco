@@ -12,6 +12,7 @@ const SHOP_DATA = {
 				xl: 3,
 				xxl: 0,
 			},
+			priceId: "price_1KAu6pJeBPhfjVEliLlSMnAo",
 		},
 		{
 			id: 2,

@@ -23,13 +23,13 @@ import {
 } from "./item-details.styles";
 
 const ItemDetails = ({
-	item: { id, name, price, imageUrl, sizes },
+	item: { id, name, price, imageUrl, sizes, priceId },
 	size,
 	quantity,
 	addItem,
 	cartItems,
 }) => {
-	let item = { id, name, price, imageUrl, size, quantity };
+	let item = { id, name, price, imageUrl, size, quantity, priceId };
 	// Checks to find if the current item has matching id and size to an item within the cart to know whether
 	// to add to cart item or add NEW cart item
 	let cartItem = cartItems

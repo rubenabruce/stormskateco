@@ -43,7 +43,7 @@ export const CartTab = styled.div`
 	}
 `;
 
-export const CartItemsCont = styled.div`
+export const CartItemsCont = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -60,6 +60,10 @@ export const CartItemsCont = styled.div`
 export const CartTitle = styled.h2`
 	width: 100%;
 	text-align: center;
+`;
+
+export const HiddenInput = styled.input`
+	display: hidden;
 `;
 
 export const EmptyMessage = styled.span`
