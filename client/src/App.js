@@ -8,6 +8,7 @@ import Header from "./components/header/header.component";
 import Homepage from "./pages/homepage/homepage.component";
 import ShopItemPage from "./pages/item-page/item-page.component";
 import ShopPage from "./pages/shoppage/shoppage.component";
+import SuccessPage from "./pages/success-page/success-page.component";
 import VideoPage from "./pages/videopage/videopage.component";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 					path="/shop/:id"
 					element={<ShopItemPage location={location} />}
 				/>
+				<Route path="/success" element={<SuccessPage />} />
 				<Route path="/shop" element={<ShopPage />} />
 				<Route path="/videos" element={<VideoPage />} />
 			</Routes>

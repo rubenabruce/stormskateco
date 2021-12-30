@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const HeaderCont = styled.div`
-	height: 80px;
+	height: 9vh;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 10%;
+	padding: 0.5vh 10%;
 	position: relative;
 	background-color: ${({ invert }) => (invert ? "white" : "black")};
 

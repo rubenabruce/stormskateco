@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "production") {
 	});
 }
 
-const StormSkateCo = "http://localhost:3000/shop/checkout";
+const StormSkateCo = "http://localhost:3000";
 
 app.post("/checkout", cors(), async (req, res) => {
 	// parsing from string to array with objects inside
@@ -35,15 +35,10 @@ app.post("/checkout", cors(), async (req, res) => {
 	const session = await stripe.checkout.sessions.create({
 		line_items: [...lineItems],
 		mode: "payment",
-		success_url: `${StormSkateCo}/?success=true`,
-		cancel_url: `${StormSkateCo}?canceled=true`,
+		success_url: `${StormSkateCo}/success`,
+		cancel_url: `${StormSkateCo}/shop`,
 	});
 	res.redirect(303, session.url);
-});
-
-app.post("/payment", (req, res) => {
-	console.log("payment", req.body);
-	res.sendStatus(200);
 });
 
 app.listen(PORT, (error) => {
