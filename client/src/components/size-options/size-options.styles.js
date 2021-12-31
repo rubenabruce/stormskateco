@@ -18,8 +18,8 @@ export const OptionBtn = styled.button`
 	height: 80%;
 	background-color: ${({ active }) => (active ? "black" : "white")};
 	border: 1px #ddd solid;
-	font-family: "Reenie Beanie";
-	font-size: 1.3rem;
+	font-family: "Red Rose";
+	font-size: 1rem;
 	cursor: pointer;
 	transition: all 300ms ease-in-out;
 `;

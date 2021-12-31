@@ -25,4 +25,6 @@ export const QuantityNum = styled.input`
 	text-align: center;
 	border: none;
 	width: 20px;
+	font-family: "Red Rose";
+	font-size: 1rem;
 `;
