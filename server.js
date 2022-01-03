@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.options("/checkout", bodyParser.json());
+app.options("/checkout", bodyParser.urlencoded({ extended: false }));
 // app.use(cors());
 app.options("/checkout", cors());
 
@@ -25,69 +25,162 @@ if (process.env.NODE_ENV === "production") {
 
 const StormSkateCo = "http://localhost:3000";
 
-app.post("/checkout", cors(), async (req, res) => {
-	// parsing from string to array with objects inside
-	const cartItems = await JSON.parse(req.body.cartItems);
-	const lineItems = cartItems.map((item) => ({
-		price: item.priceId,
-		quantity: item.quantity,
-	}));
-	const session = await stripe.checkout.sessions.create({
-		payment_method_types: ["card"],
-		shipping_address_collection: {
-			allowed_countries: ["GB"],
-		},
-		shipping_options: [
-			{
-				shipping_rate_data: {
-					type: "fixed_amount",
-					fixed_amount: {
-						amount: 0,
-						currency: "gbp",
-					},
-					display_name: "Free shipping",
-					// Delivers between 5-7 business days
-					delivery_estimate: {
-						minimum: {
-							unit: "business_day",
-							value: 5,
+app.post(
+	"/checkout",
+	[bodyParser.json(), bodyParser.urlencoded({ extended: false }), cors()],
+	async (req, res) => {
+		// parsing from string to array with objects inside
+		const cartItems = await JSON.parse(req.body.cartItems);
+		const lineItems = cartItems.map((item) => ({
+			price: item.priceId,
+			quantity: item.quantity,
+		}));
+		const session = await stripe.checkout.sessions.create({
+			payment_method_types: ["card"],
+			shipping_address_collection: {
+				allowed_countries: ["GB"],
+			},
+			shipping_options: [
+				{
+					shipping_rate_data: {
+						type: "fixed_amount",
+						fixed_amount: {
+							amount: 0,
+							currency: "gbp",
 						},
-						maximum: {
-							unit: "business_day",
-							value: 7,
+						display_name: "Free shipping",
+						// Delivers between 5-7 business days
+						delivery_estimate: {
+							minimum: {
+								unit: "business_day",
+								value: 5,
+							},
+							maximum: {
+								unit: "business_day",
+								value: 7,
+							},
 						},
 					},
 				},
-			},
-			{
-				shipping_rate_data: {
-					type: "fixed_amount",
-					fixed_amount: {
-						amount: 1500,
-						currency: "gbp",
-					},
-					display_name: "Next day",
-					// Delivers in exactly 1 business day
-					delivery_estimate: {
-						minimum: {
-							unit: "business_day",
-							value: 1,
+				{
+					shipping_rate_data: {
+						type: "fixed_amount",
+						fixed_amount: {
+							amount: 1500,
+							currency: "gbp",
 						},
-						maximum: {
-							unit: "business_day",
-							value: 2,
+						display_name: "Next day",
+						// Delivers in exactly 1 business day
+						delivery_estimate: {
+							minimum: {
+								unit: "business_day",
+								value: 1,
+							},
+							maximum: {
+								unit: "business_day",
+								value: 2,
+							},
 						},
 					},
 				},
-			},
-		],
-		line_items: [...lineItems],
-		mode: "payment",
-		success_url: `${StormSkateCo}/success`,
-		cancel_url: `${StormSkateCo}/shop`,
-	});
-	res.redirect(303, session.url);
-});
+			],
+			line_items: [...lineItems],
+			mode: "payment",
+			success_url: `${StormSkateCo}/success`,
+			cancel_url: `${StormSkateCo}/shop`,
+		});
+		res.redirect(303, session.url);
+	}
+);
+
+const localWebhookEndpoint = process.env.LOCAL_WEBHOOK_ENDPOINT;
+
+const fulfillOrder = (session) => {
+	console.log("Fulfilling order", session);
+	// TODO: Send email to reciptient
+	let clientEmail = session.customer_details.email;
+
+	// TODO: Send email to chilli
+	// TODO: Send order details to database
+};
+
+const createOrder = (session) => {
+	// TODO: fill me in
+	console.log("Creating order", session);
+};
+
+const emailCustomerAboutFailedPayment = (session) => {
+	// TODO: fill me in
+	console.log("Emailing customer", session);
+};
+
+app.post(
+	"/webhook",
+	bodyParser.raw({ type: "application/json" }),
+	(request, response) => {
+		const payload = request.body;
+		const sig = request.headers["stripe-signature"];
+
+		let event;
+
+		console.log("webhook called.");
+
+		try {
+			console.log(
+				`payload: ${payload}, sig: ${sig}, localWebhookEndpoint: ${localWebhookEndpoint}`
+			);
+			event = stripe.webhooks.constructEvent(
+				payload,
+				sig,
+				localWebhookEndpoint
+			);
+			console.log("event:", event);
+		} catch (err) {
+			console.error("error message: ", err);
+			return response.status(400).send(`Webhook Error: ${err.message}`);
+		}
+
+		// Handle the checkout.session.completed event
+		switch (event.type) {
+			case "checkout.session.completed": {
+				const session = event.data.object;
+				// Save an order in your database, marked as 'awaiting payment'
+				createOrder(session);
+
+				// Check if the order is paid (for example, from a card payment)
+				//
+				// A delayed notification payment will have an `unpaid` status, as
+				// you're still waiting for funds to be transferred from the customer's
+				// account.
+				if (session.payment_status === "paid") {
+					fulfillOrder(session);
+				}
+
+				break;
+			}
+
+			case "checkout.session.async_payment_succeeded": {
+				const session = event.data.object;
+
+				// Fulfill the purchase...
+				fulfillOrder(session);
+
+				break;
+			}
+
+			case "checkout.session.async_payment_failed": {
+				const session = event.data.object;
+
+				// Send an email to the customer asking them to retry their order
+				emailCustomerAboutFailedPayment(session);
+
+				break;
+			}
+		}
+
+		response.status(200);
+	}
+);
 
 app.listen(PORT, (error) => {
 	if (error) throw error;
