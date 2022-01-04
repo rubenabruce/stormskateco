@@ -13,6 +13,7 @@ import VideoPage from "./pages/videopage/videopage.component";
 
 function App() {
 	let location = useLocation();
+
 	return (
 		<div className="App">
 			{location.pathname === "/" ? "" : <Header />}

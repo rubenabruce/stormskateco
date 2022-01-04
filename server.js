@@ -1,14 +1,32 @@
 require("dotenv").config({ path: "./.env" });
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const {
+	initializeApp,
+	applicationDefault,
+	cert,
+} = require("firebase-admin/app");
+const {
+	getFirestore,
+	Timestamp,
+	FieldValue,
+} = require("firebase-admin/firestore");
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
+const serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS;
 
 const app = express();
+
+initializeApp({
+	credential: cert(serviceAccount),
+	databaseURL: "https://storm-skate-co.firebaseio.com",
+});
+
+const db = getFirestore();
 
 app.options("/checkout", bodyParser.json());
 app.options("/checkout", bodyParser.urlencoded({ extended: false }));
@@ -38,7 +56,7 @@ app.post(
 		const session = await stripe.checkout.sessions.create({
 			payment_method_types: ["card"],
 			shipping_address_collection: {
-				allowed_countries: ["GB"],
+				allowed_countries: ["GB", "US"],
 			},
 			shipping_options: [
 				{
@@ -67,7 +85,7 @@ app.post(
 						type: "fixed_amount",
 						fixed_amount: {
 							amount: 1500,
-							currency: "gbp",
+							currency: ["gbp", "usd"],
 						},
 						display_name: "Next day",
 						// Delivers in exactly 1 business day
@@ -95,13 +113,29 @@ app.post(
 
 const localWebhookEndpoint = process.env.LOCAL_WEBHOOK_ENDPOINT;
 
-const fulfillOrder = (session) => {
+const fulfillOrder = async (session) => {
 	console.log("Fulfilling order", session);
-	// TODO: Send email to reciptient
-	let clientEmail = session.customer_details.email;
+	// TODO: Send email to reciptient - will be done by stripe automatically
+
+	const docRef = db.collection("orders").doc(session.id);
+
+	try {
+		await docRef.set({
+			totalPaid: session.amount_total,
+			subTotal: session.amount_subtotal,
+			currency: session.currency,
+			customerDetails: { ...session.customer_details },
+			paymentIntent: session.payment_intent,
+			paymentStatus: session.payment_status,
+			shipping: { ...session.shipping },
+			stripeStatus: session.status,
+		});
+		console.log("I think it worked");
+	} catch {
+		console.log("Error occured when setting order data");
+	}
 
 	// TODO: Send email to chilli
-	// TODO: Send order details to database
 };
 
 const createOrder = (session) => {
