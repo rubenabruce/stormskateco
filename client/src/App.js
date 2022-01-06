@@ -7,6 +7,7 @@ import Header from "./components/header/header.component";
 
 import Homepage from "./pages/homepage/homepage.component";
 import ShopItemPage from "./pages/item-page/item-page.component";
+import ShopRoutes from "./pages/shop-routes/shop-routes.component";
 import ShopPage from "./pages/shoppage/shoppage.component";
 import SuccessPage from "./pages/success-page/success-page.component";
 import VideoPage from "./pages/videopage/videopage.component";
@@ -19,13 +20,8 @@ function App() {
 			{location.pathname === "/" ? "" : <Header />}
 			<Routes>
 				<Route exact path="/" element={<Homepage />} />
-				<Route
-					exact
-					path="/shop/:id"
-					element={<ShopItemPage location={location} />}
-				/>
+				<Route path="/shop/*" element={<ShopRoutes location={location} />} />
 				<Route path="/success" element={<SuccessPage />} />
-				<Route path="/shop" element={<ShopPage />} />
 				<Route path="/videos" element={<VideoPage />} />
 			</Routes>
 			{location.pathname.includes("shop") ? <CartSlider /> : null}
@@ -34,3 +30,10 @@ function App() {
 }
 
 export default App;
+
+// <Route
+// 	exact
+// 	path="/shop/:id"
+// 	element={<ShopItemPage location={location} />}
+// />
+// <Route path="/shop" element={<ShopPage />} />
