@@ -13,7 +13,7 @@ const ShopItemPage = ({ item }) => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	});
-	console.log("shopitem");
+	console.log("SHOPITEMPAGE rendered");
 	return (
 		<ItemPageCont>
 			<MainItem>

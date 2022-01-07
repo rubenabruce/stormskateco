@@ -24,7 +24,6 @@ function App() {
 				<Route path="/success" element={<SuccessPage />} />
 				<Route path="/videos" element={<VideoPage />} />
 			</Routes>
-			{location.pathname.includes("shop") ? <CartSlider /> : null}
 		</div>
 	);
 }
