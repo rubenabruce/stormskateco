@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import QuantitySelector from "../quantity-selector/quantity-selector.component";
@@ -13,13 +13,27 @@ import {
 	BinCont,
 	QuantBinCont,
 } from "./cart-item.styles";
+import { downloadFiles } from "../../firebase/firebase.utils";
 
 const CartItem = ({ item }) => {
 	const dispatch = useDispatch();
+	console.log("item:", item);
+
+	const [imageUrl, setImageUrl] = useState([]);
+
+	useEffect(() => {
+		setImageUrl("");
+		console.log("item-images[0]", item.images);
+		item.images[0].includes("https://firebasestorage")
+			? setImageUrl(item.images[0])
+			: downloadFiles(item.images[0])
+					.then((url) => setImageUrl(url))
+					.catch((err) => console.log(err));
+	}, [item]);
 
 	return (
 		<CartItemCont>
-			<ImageCont src={item.imageUrl} alt={item.name} />
+			<ImageCont src={imageUrl} alt={item.name} />
 			<ItemDetails>
 				<Detail>{item.name.toUpperCase()}</Detail>
 				<Detail>{item.size.toUpperCase()}</Detail>

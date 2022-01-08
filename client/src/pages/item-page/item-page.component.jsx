@@ -13,11 +13,10 @@ const ShopItemPage = ({ item }) => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	});
-	console.log("SHOPITEMPAGE rendered");
 	return (
 		<ItemPageCont>
 			<MainItem>
-				<ItemImages imageUrl={item.imageUrl} imageAlt={item.name} />
+				<ItemImages images={item.images} imageAlt={item.name} />
 				<ItemDetails item={item} />
 			</MainItem>
 			<FeaturedItems />

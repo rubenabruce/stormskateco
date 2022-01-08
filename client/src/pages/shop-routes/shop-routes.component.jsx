@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { firestore } from "../../firebase/firebase.utils";
+import { downloadFiles, firestore } from "../../firebase/firebase.utils";
 
 import { updateShopItems } from "../../redux/shop/shop.actions";
 
@@ -30,8 +30,15 @@ class ShopRoutes extends React.Component {
 				const shopItems = [];
 				collectionSnapShot.forEach((doc) => shopItems.push(doc.data()));
 				console.log(shopItems);
-				updateShopItems(shopItems);
-				this.setState({ loading: false });
+				shopItems.forEach((item, index) => {
+					downloadFiles(item.images[0])
+						.then((itemImageUrl) => (shopItems[index].images[0] = itemImageUrl))
+						.then(() => {
+							updateShopItems(shopItems);
+							this.setState({ loading: false });
+						})
+						.catch((err) => console.log(err));
+				});
 			}
 		);
 	}

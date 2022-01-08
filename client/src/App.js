@@ -2,13 +2,10 @@ import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import "./App.css";
-import CartSlider from "./components/cart-slider/cart-slider.component";
 import Header from "./components/header/header.component";
 
 import Homepage from "./pages/homepage/homepage.component";
-import ShopItemPage from "./pages/item-page/item-page.component";
 import ShopRoutes from "./pages/shop-routes/shop-routes.component";
-import ShopPage from "./pages/shoppage/shoppage.component";
 import SuccessPage from "./pages/success-page/success-page.component";
 import VideoPage from "./pages/videopage/videopage.component";
 

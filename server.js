@@ -56,7 +56,7 @@ app.post(
 		const session = await stripe.checkout.sessions.create({
 			payment_method_types: ["card"],
 			shipping_address_collection: {
-				allowed_countries: ["GB", "US"],
+				allowed_countries: ["GB"],
 			},
 			shipping_options: [
 				{
@@ -85,7 +85,7 @@ app.post(
 						type: "fixed_amount",
 						fixed_amount: {
 							amount: 1500,
-							currency: ["gbp", "usd"],
+							currency: "gbp",
 						},
 						display_name: "Next day",
 						// Delivers in exactly 1 business day
