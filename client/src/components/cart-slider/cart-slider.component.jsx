@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
@@ -24,13 +24,20 @@ import CustomButton from "../custom-button/custom-button.component";
 const CartSlider = ({ cartItems, cartQuantity }) => {
 	const [open, setOpen] = useState(false);
 	// TO SEND A REQUEST TO STRIPE. IT HAS TO BE A FORM.
+	useEffect(() => {
+		cartItems.length > 0 ? setOpen(false) : setOpen(false);
+	}, [cartItems]);
 
 	let parsedCartItems = JSON.stringify(cartItems);
 	return (
 		<CartSliderCont open={open}>
-			<CartTab onClick={() => setOpen(!open)}>
-				<p>Cart ({cartQuantity})</p>
-			</CartTab>
+			{cartItems.length > 0 ? (
+				<CartTab onClick={() => setOpen(!open)}>
+					<p>Cart ({cartQuantity})</p>
+				</CartTab>
+			) : (
+				""
+			)}
 			<CartItemsCont action="/checkout" method="POST">
 				<CartTitle>Cart ({cartQuantity})</CartTitle>
 				{cartItems.length ? (

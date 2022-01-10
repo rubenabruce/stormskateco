@@ -46,9 +46,13 @@ const QuantitySelector = ({
 
 	return (
 		<QuantitySelectorCont {...props}>
-			<IncDecCont onClick={handleDecrease}>-</IncDecCont>
+			<IncDecCont className="incDec" onClick={handleDecrease}>
+				-
+			</IncDecCont>
 			<QuantityNum type="text" pattern="[0-9]*" value={quantity} readOnly />
-			<IncDecCont onClick={handleIncrease}>+</IncDecCont>
+			<IncDecCont className="incDec" onClick={handleIncrease}>
+				+
+			</IncDecCont>
 		</QuantitySelectorCont>
 	);
 };

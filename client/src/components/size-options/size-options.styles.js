@@ -21,5 +21,11 @@ export const OptionBtn = styled.button`
 	font-family: "Red Rose";
 	font-size: 1rem;
 	cursor: pointer;
-	transition: all 300ms ease-in-out;
+	transition: all 200ms ease-in-out;
+
+	:hover {
+		background-color: black;
+		color: white;
+		border-color: white;
+	}
 `;

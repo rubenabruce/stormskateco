@@ -2,11 +2,11 @@ import React from "react";
 import { CustomButtonCont } from "./custom-button.styles";
 
 const CustomButton = ({ children, flip, ...props }) => {
-	return flip ? (
-		<div className="flip">
+	return false ? (
+		<CustomButtonCont className="flip" flip>
 			<div className="front">{children}</div>
 			<div className="back">{children}</div>
-		</div>
+		</CustomButtonCont>
 	) : (
 		<CustomButtonCont {...props}>{children}</CustomButtonCont>
 	);

@@ -18,6 +18,13 @@ export const QuantitySelectorCont = styled.div`
 export const IncDecCont = styled.span`
 	padding: 10px 20px;
 	cursor: pointer;
+	transition: all 200ms ease-in-out;
+
+	:hover {
+		background-color: black;
+		color: white;
+		border-color: white;
+	}
 `;
 
 export const QuantityNum = styled.input`
