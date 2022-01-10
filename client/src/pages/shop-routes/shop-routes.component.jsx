@@ -30,14 +30,19 @@ class ShopRoutes extends React.Component {
 				const shopItems = [];
 				collectionSnapShot.forEach((doc) => shopItems.push(doc.data()));
 				console.log(shopItems);
-				shopItems.forEach((item, index) => {
-					downloadFiles(item.images[0])
-						.then((itemImageUrl) => (shopItems[index].images[0] = itemImageUrl))
-						.then(() => {
-							updateShopItems(shopItems);
-							this.setState({ loading: false });
-						})
-						.catch((err) => console.log(err));
+				shopItems.forEach((item, shopIndex) => {
+					item.images.forEach((image, index) => {
+						downloadFiles(image)
+							.then(
+								(itemImageUrl) =>
+									(shopItems[shopIndex].images[index] = itemImageUrl)
+							)
+							.then(() => {
+								updateShopItems(shopItems);
+								this.setState({ loading: false });
+							})
+							.catch((err) => console.log(err));
+					});
 				});
 			}
 		);

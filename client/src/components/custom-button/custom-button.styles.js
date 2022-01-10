@@ -28,4 +28,5 @@ export const CustomButtonCont = styled.button`
   ${getOtherStyles}
   ${inverted}
   ${disabled}
+	
 `;

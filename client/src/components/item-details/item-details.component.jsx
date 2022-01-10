@@ -23,7 +23,7 @@ import {
 } from "./item-details.styles";
 
 const ItemDetails = ({
-	item: { id, name, price, images, sizes, priceId },
+	item: { id, name, price, images, sizes, priceId, description },
 	size,
 	quantity,
 	addItem,
@@ -62,7 +62,9 @@ const ItemDetails = ({
 			<Name>{name.toUpperCase()}</Name>
 			<Price>£{price}</Price>
 			<Description>
-				<li>Description</li>
+				{description.map((descItem) => (
+					<li>{descItem}</li>
+				))}
 			</Description>
 			<ItemOption>
 				<Label>SIZE:</Label>
@@ -73,6 +75,7 @@ const ItemDetails = ({
 				<QuantitySelector item={item} type={"shop-item"} sizes={sizes} />
 			</ItemOption>
 			<CustomButton
+				flip
 				disabled={!(sizes[size] >= 1)}
 				onClick={() => handleClick()}
 				style={{ margin: "20px 0" }}

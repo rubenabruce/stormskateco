@@ -2,8 +2,9 @@ import React from "react";
 
 import StormBackgroundTrans from "../../assets/stormBackground.gif";
 import textLogoSpinTrans from "../../assets/stormTextGifTrans.gif";
-import vxSpin from "../../assets/vx1000.gif";
+// import vxSpin from "../../assets/vx1000.gif";
 import tShirtSpinTrans from "../../assets/tshirtGifTrans2.gif";
+import vxSpin from "../../assets/vx1000 2.gif";
 
 import {
 	HomepageCont,

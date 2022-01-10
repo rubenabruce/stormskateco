@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { useNavigate } from "react-router";
-import { downloadFiles } from "../../firebase/firebase.utils";
 
 import { ShopItemCont, ItemImageCont, NamePriceCont } from "./shop-item.styles";
 
 const ShopItem = ({ item: { images, name, price, id } }) => {
 	let navigate = useNavigate();
 
+	console.log("image[0]", images[0]);
+
 	// const [imageUrls, setImageUrls] = useState([]);
 
-	useEffect(() => {}, []);
+	// useEffect(() => {}, []);
 
 	// setImageUrls([]);
 	// images.forEach((imageRef) => {
