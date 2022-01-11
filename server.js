@@ -54,7 +54,7 @@ if (process.env.NODE_ENV === "production") {
 
 const StormSkateCo =
 	process.env.NODE_ENV === "production"
-		? "https://storm-skate-co.herokuapp.com/"
+		? "https://storm-skate-co.herokuapp.com"
 		: "http://localhost:3000";
 
 app.post(
