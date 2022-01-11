@@ -30,7 +30,6 @@ const db = getFirestore();
 
 app.options("/checkout", bodyParser.json());
 app.options("/checkout", bodyParser.urlencoded({ extended: false }));
-// app.use(cors());
 app.options("/checkout", cors());
 
 if (process.env.NODE_ENV === "production") {
@@ -41,7 +40,10 @@ if (process.env.NODE_ENV === "production") {
 	});
 }
 
-const StormSkateCo = "http://localhost:3000";
+const StormSkateCo =
+	process.env.NODE_ENV === "production"
+		? "https://storm-skate-co.herokuapp.com/"
+		: "http://localhost:3000";
 
 app.post(
 	"/checkout",
