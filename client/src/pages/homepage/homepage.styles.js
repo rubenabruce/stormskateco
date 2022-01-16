@@ -1,9 +1,21 @@
 import styled from "styled-components";
 
-export const HomepageCont = styled.div`
-	background-image: url("../../assets/stormBackground.gif");
-	background-size: cover;
+export const BackgroundVid = styled.video`
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -100;
+	transform: translateX(-50%) translateY(-50%);
 	background-color: black;
+	background-size: cover;
+	transition: 1s opacity;
+`;
+
+export const HomepageCont = styled.div`
 	height: 100vh;
 	width: 100vw;
 	display: flex;

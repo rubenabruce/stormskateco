@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 
 // import stormTextLogo from "../../assets/NEWERLOGO  .png";
 import stormLogo from "../../assets/stormLogoGif.gif";
-import videoLogo from "../../assets/vx1000.gif";
-import garmLogo from "../../assets/tshirtGif.gif";
+import videoLogo from "../../assets/vxSpinning.gif";
+import garmLogo from "../../assets/tshirtGifTrans3.gif";
 
 import { HeaderCont } from "./header.styles.js";
 
