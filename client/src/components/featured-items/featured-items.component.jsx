@@ -14,7 +14,7 @@ const FeaturedItems = ({ shopItems }) => {
 			<h2>OTHER GARMS</h2>
 			<ItemsGrid>
 				{shopItems.map((item, index) =>
-					index < 4 ? <ShopItem item={item} key={uuidv4()} /> : ""
+					index < 3 ? <ShopItem item={item} key={uuidv4()} /> : ""
 				)}
 			</ItemsGrid>
 		</FeaturedItemsCont>

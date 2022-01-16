@@ -18,7 +18,7 @@ export const Title = styled.h2`
 export const ItemsGrid = styled.div`
 	display: grid;
 	width: 100%;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	column-gap: 1rem;
 	row-gap: 1rem;
 
