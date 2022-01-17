@@ -37,7 +37,7 @@ export const SpinningLogo = styled.video`
 		height: unset;
 		width: 100%;
 		top: unset;
-		margin-top: 50vh;
+		margin-top: 0vh;
 	}
 `;
 
@@ -52,14 +52,15 @@ export const OptionsCont = styled.div`
 
 	& .spinningTshirt {
 		margin-right: 100px;
+		margin-top: 20px;
 	}
 
 	@media screen and (max-width: 1000px) {
-		flex-direction: column;
 		align-items: center;
 		height: unset;
 		position: relative;
-		display: contents;
+		bottom: 0;
+		/* display: contents; */
 
 		& .spinningTshirt {
 			margin-right: unset;
@@ -76,6 +77,7 @@ export const Option = styled.video`
 	}
 
 	@media screen and (max-width: 500px) {
-		width: 100%;
+		max-width: 40vw;
+		max-height: 200px;
 	}
 `;

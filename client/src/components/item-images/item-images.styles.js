@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 export const ItemImagesCont = styled.div`
 	width: 55%;
+	height: 70vh;
+	max-height: 80vh;
 
 	.awssld {
 		height: 100%;
@@ -23,6 +25,10 @@ export const ItemImagesCont = styled.div`
 	@media screen and (max-width: 800px) {
 		width: 100%;
 		margin-bottom: 40px;
+	}
+
+	@media screen and (max-width: 400px) {
+		height: 50vh;
 	}
 `;
 

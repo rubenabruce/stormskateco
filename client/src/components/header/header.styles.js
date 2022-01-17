@@ -24,5 +24,9 @@ export const HeaderCont = styled.div`
 	& > a > video {
 		height: 100%;
 		filter: ${({ invert }) => (invert ? "invert(1)" : "invert(0)")};
+
+		:hover {
+			filter: ${({ invert }) => (invert ? "invert(0)" : "invert(1)")};
+		}
 	}
 `;

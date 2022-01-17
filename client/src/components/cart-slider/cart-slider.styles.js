@@ -9,6 +9,7 @@ export const CartSliderCont = styled.div`
 	transition: right 500ms ease-in-out;
 	background-color: black;
 	color: white;
+	z-index: 10;
 
 	/* &:before {
 		content: "Cart";
