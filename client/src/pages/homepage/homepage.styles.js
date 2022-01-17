@@ -28,7 +28,7 @@ export const HomepageCont = styled.div`
 	}
 `;
 
-export const SpinningLogo = styled.img`
+export const SpinningLogo = styled.video`
 	height: 80%;
 	position: relative;
 	top: -10%;
@@ -67,7 +67,7 @@ export const OptionsCont = styled.div`
 	}
 `;
 
-export const Option = styled.img`
+export const Option = styled.video`
 	height: 70%;
 	cursor: pointer;
 

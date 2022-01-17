@@ -1,10 +1,14 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-// import stormTextLogo from "../../assets/NEWERLOGO  .png";
-import stormLogo from "../../assets/stormLogoGif.gif";
-import videoLogo from "../../assets/vxSpinning.gif";
-import garmLogo from "../../assets/tshirtGifTrans3.gif";
+import TShirtSpinWebm from "../../assets/spinningTwebm3.webm";
+import TShirtSpinPoster from "../../assets/spinningTPoster.png";
+
+import VXSpinWebm from "../../assets/spinningVXwebm.webm";
+import VXSpinPoster from "../../assets/spinningVxPoster.png";
+
+import LogoSpinWebm from "../../assets/spinningLogowebm.webm";
+import LogoSpinPoster from "../../assets/spinningLogoPoster.png";
 
 import { HeaderCont } from "./header.styles.js";
 
@@ -13,13 +17,40 @@ const Header = () => {
 	return (
 		<HeaderCont invert={location.pathname.includes("/shop")}>
 			<Link to="/videos">
-				<img src={videoLogo} alt="Spinning vx1000 camera" />
+				<video
+					poster={VXSpinPoster}
+					autoPlay
+					id="spinVx"
+					playsinline
+					muted
+					loop
+				>
+					<source src={VXSpinWebm} type="video/webm" />
+				</video>
 			</Link>
 			<Link to="/">
-				<img className="storm-logo" src={stormLogo} alt="Storm logo" />
+				<video
+					poster={LogoSpinPoster}
+					autoPlay
+					id="spinLogo"
+					playsinline
+					muted
+					loop
+				>
+					<source src={LogoSpinWebm} type="video/webm" />
+				</video>
 			</Link>
 			<Link to="/shop">
-				<img src={garmLogo} alt="Spinning t-shirt" />
+				<video
+					poster={TShirtSpinPoster}
+					autoPlay
+					id="spinT"
+					playsinline
+					muted
+					loop
+				>
+					<source src={TShirtSpinWebm} type="video/webm" />
+				</video>
 			</Link>
 		</HeaderCont>
 	);

@@ -21,7 +21,7 @@ export const HeaderCont = styled.div`
 		align-items: center;
 	}
 
-	& > a > img {
+	& > a > video {
 		height: 100%;
 		filter: ${({ invert }) => (invert ? "invert(1)" : "invert(0)")};
 	}

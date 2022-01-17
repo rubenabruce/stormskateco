@@ -14,6 +14,7 @@ export const MainItem = styled.section`
 	margin-top: 2rem;
 	width: 70%;
 	justify-content: space-between;
+	margin-bottom: 2rem;
 
 	@media screen and (max-width: 800px) {
 		flex-direction: column;

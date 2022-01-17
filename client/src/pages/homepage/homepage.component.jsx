@@ -1,14 +1,16 @@
 import React from "react";
 
-// import StormBackgroundTrans from "../../assets/stormBackground.gif";
 import StormBackgroundVid from "../../assets/background-vid.mp4";
 import LightningPoster from "../../assets/lightningPoster.png";
 
-import textLogoSpinTrans from "../../assets/stormTextGifTrans2.gif";
-// import vxSpin from "../../assets/vx1000.gif";
-import tShirtSpinTrans from "../../assets/tshirtGifTrans3.gif";
-// import vxSpin from "../../assets/vx1000 2.gif";
-import vxSpin from "../../assets/vxSpinning.gif";
+import TextLogoSpinWebm from "../../assets/spinningTextLogowebm.webm";
+import TextLogoSpinPoster from "../../assets/spinningTextLogoPoster.png";
+
+import TShirtSpinWebm from "../../assets/spinningTwebm3.webm";
+import TShirtSpinPoster from "../../assets/spinningTPoster.png";
+
+import VXSpinWebm from "../../assets/spinningVXwebm.webm";
+import VXSpinPoster from "../../assets/spinningVxPoster.png";
 
 import {
 	BackgroundVid,
@@ -36,23 +38,41 @@ const Homepage = () => {
 			<HomepageCont>
 				<SpinningLogo
 					className="spinningLogo"
-					src={textLogoSpinTrans}
-					alt="Storm logo"
-				/>
+					poster={TextLogoSpinPoster}
+					autoPlay
+					id="spinLogo"
+					playsinline
+					muted
+					loop
+				>
+					<source src={TextLogoSpinWebm} type="video/webm" />
+				</SpinningLogo>
 				<OptionsCont className="optionsCont">
 					<Link to={"/videos"}>
 						<Option
 							className="spinningVX option"
-							src={vxSpin}
-							alt="Spinning VX1000"
-						/>
+							poster={VXSpinPoster}
+							autoPlay
+							id="spinVX"
+							playsinline
+							muted
+							loop
+						>
+							<source src={VXSpinWebm} type="video/webm" />
+						</Option>
 					</Link>
 					<Link to={"/shop"}>
 						<Option
 							className="spinningTshirt option"
-							src={tShirtSpinTrans}
-							alt="Spinning T-shirt"
-						/>
+							poster={TShirtSpinPoster}
+							autoPlay
+							id="spinT"
+							playsinline
+							muted
+							loop
+						>
+							<source src={TShirtSpinWebm} type="video/webm" />
+						</Option>
 					</Link>
 				</OptionsCont>
 			</HomepageCont>
