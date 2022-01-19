@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import "./App.css";
+import Footer from "./components/footer/footer.component";
 import Header from "./components/header/header.component";
 
 import Homepage from "./pages/homepage/homepage.component";
@@ -21,6 +22,7 @@ function App() {
 				<Route path="/success" element={<SuccessPage />} />
 				<Route path="/videos" element={<VideoPage />} />
 			</Routes>
+			<Footer />
 		</div>
 	);
 }

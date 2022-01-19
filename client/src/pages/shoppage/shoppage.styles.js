@@ -5,8 +5,9 @@ export const ShopPageCont = styled.div`
 	color: black;
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	flex-direction: column;
+	min-height: 100vh;
 `;
 
 export const ShopGrid = styled.div`
