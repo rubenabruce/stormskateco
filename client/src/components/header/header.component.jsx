@@ -21,7 +21,7 @@ const Header = () => {
 					poster={VXSpinPoster}
 					autoPlay
 					id="spinVx"
-					playsinline
+					playsInline
 					muted
 					loop
 				>
@@ -33,7 +33,7 @@ const Header = () => {
 					poster={LogoSpinPoster}
 					autoPlay
 					id="spinLogo"
-					playsinline
+					playsInline
 					muted
 					loop
 				>
@@ -45,7 +45,7 @@ const Header = () => {
 					poster={TShirtSpinPoster}
 					autoPlay
 					id="spinT"
-					playsinline
+					playsInline
 					muted
 					loop
 				>

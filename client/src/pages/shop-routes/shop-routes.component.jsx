@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { downloadFiles, firestore } from "../../firebase/firebase.utils";
+import { firestore } from "../../firebase/firebase.utils";
 
 import { updateShopItems } from "../../redux/shop/shop.actions";
 
@@ -30,20 +30,25 @@ class ShopRoutes extends React.Component {
 				const shopItems = [];
 				collectionSnapShot.forEach((doc) => shopItems.push(doc.data()));
 				console.log(shopItems);
-				shopItems.forEach((item, shopIndex) => {
-					item.images.forEach((image, index) => {
-						downloadFiles(image)
-							.then(
-								(itemImageUrl) =>
-									(shopItems[shopIndex].images[index] = itemImageUrl)
-							)
-							.then(() => {
-								updateShopItems(shopItems);
-								this.setState({ loading: false });
-							})
-							.catch((err) => console.log(err));
-					});
-				});
+				updateShopItems(shopItems);
+				this.setState({ loading: false });
+
+				// Code below is downloading all images for the shopdata we've just retrieved
+
+				// shopItems.forEach((item, shopIndex) => {
+				// 	item.images.forEach((image, index) => {
+				// 		downloadFiles(image)
+				// 			.then(
+				// 				(itemImageUrl) =>
+				// 					(shopItems[shopIndex].images[index] = itemImageUrl)
+				// 			)
+				// 			.then(() => {
+				// 				updateShopItems(shopItems);
+				// 				this.setState({ loading: false });
+				// 			})
+				// 			.catch((err) => console.log(err));
+				// 	});
+				// });
 			}
 		);
 	}

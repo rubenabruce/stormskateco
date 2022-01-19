@@ -9,7 +9,7 @@ import TextLogoSpinPoster from "../../assets/spinningTextLogoPoster.png";
 import TShirtSpinWebm from "../../assets/spinningTwebm3.webm";
 import TShirtSpinPoster from "../../assets/spinningTPoster.png";
 
-import VXSpinWebm from "../../assets/spinningVXwebm.webm";
+import VXSpinWebm from "../../assets/spinningVXwebm2.webm";
 import VXSpinPoster from "../../assets/spinningVxPoster.png";
 
 import {

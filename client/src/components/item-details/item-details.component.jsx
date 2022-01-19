@@ -63,7 +63,7 @@ const ItemDetails = ({
 			<Price>£{price}</Price>
 			<Description>
 				{description.map((descItem) => (
-					<li>{descItem}</li>
+					<li key={descItem}>{descItem}</li>
 				))}
 			</Description>
 			<ItemOption>

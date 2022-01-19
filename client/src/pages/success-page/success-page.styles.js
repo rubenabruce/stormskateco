@@ -24,6 +24,6 @@ export const Message = styled.p`
 	color: white;
 `;
 
-export const SpinningLogo = styled.img`
+export const SpinningLogo = styled.video`
 	height: 10rem;
 `;

@@ -16,6 +16,12 @@ const config = {
 firebase.initializeApp(config);
 
 export const downloadFiles = async (imageRef) => {
+	let alreadyFetched = imageRef.includes("firebase");
+
+	if (alreadyFetched) {
+		return imageRef;
+	}
+
 	// FIRST TRY
 	const storageRef = storage.ref();
 	// console.log("storageRef = ", storageRef);
