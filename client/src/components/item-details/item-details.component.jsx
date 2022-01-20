@@ -30,7 +30,6 @@ const ItemDetails = ({
 	cartItems,
 }) => {
 	let item = { id, name, price, images, size, quantity, priceId };
-	console.log("item-details: ", item);
 
 	const handleClick = () => {
 		// Checks to find if the current item has matching id and size to an item within the cart to know whether

@@ -8,7 +8,6 @@ import { ShopItemCont, ItemImageCont, NamePriceCont } from "./shop-item.styles";
 const ShopItem = ({ item: { images, name, price, id } }) => {
 	let navigate = useNavigate();
 
-	console.log("image[0]", images[0]);
 	let imageRef = images[0];
 
 	const [image, setImage] = useState("");

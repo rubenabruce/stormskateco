@@ -18,17 +18,15 @@ import {
 
 const CartItem = ({ item }) => {
 	const dispatch = useDispatch();
-	console.log("item:", item.images[0]);
-
-	let imageRef = item.images[0];
 
 	const [image, setImage] = useState("");
 
 	useEffect(() => {
-		downloadFiles(imageRef)
+		console.log(item);
+		downloadFiles(item.images[0])
 			.then((imageUrl) => setImage(imageUrl))
 			.catch((e) => console.log(e));
-	}, [imageRef]);
+	}, [item]);
 
 	return (
 		<CartItemCont>

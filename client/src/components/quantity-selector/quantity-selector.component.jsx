@@ -19,7 +19,6 @@ const QuantitySelector = ({
 	updateShopItemQuantity,
 	...props
 }) => {
-	console.log(item.quantity);
 	const [quantity, setQuantity] = useState(item ? item.quantity : 1);
 
 	const handleDecrease = () => {

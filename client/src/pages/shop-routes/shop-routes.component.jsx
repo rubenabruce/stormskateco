@@ -29,7 +29,6 @@ class ShopRoutes extends React.Component {
 			async (collectionSnapShot) => {
 				const shopItems = [];
 				collectionSnapShot.forEach((doc) => shopItems.push(doc.data()));
-				console.log(shopItems);
 				updateShopItems(shopItems);
 				this.setState({ loading: false });
 

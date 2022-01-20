@@ -10,24 +10,13 @@ export const CartSliderCont = styled.div`
 	background-color: black;
 	color: white;
 	z-index: 10;
-
-	/* &:before {
-		content: "Cart";
-		padding: 50px 70px;
-		transform: rotate(90deg);
-		left: -50px;
-		top: 45%;
-		background-color: inherit;
-		position: relative;
-		color: white;
-	} */
 `;
 
 export const CartTab = styled.div`
 	width: 140px;
 	height: 100px;
 	background-color: black;
-	left: -110px;
+	left: ${({ visible }) => (visible ? "-110px" : "0px")};
 	transform: rotate(-90deg);
 	top: 45%;
 	position: absolute;
@@ -38,6 +27,7 @@ export const CartTab = styled.div`
 	align-items: center;
 	font-size: 30px;
 	cursor: pointer;
+	transition: all 300ms ease-in-out;
 
 	&:hover {
 		background-color: #393939;
@@ -71,4 +61,15 @@ export const EmptyMessage = styled.span`
 	margin: 50px auto 0;
 	position: relative;
 	font-size: 18px;
+`;
+
+export const Overlay = styled.div`
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	position: absolute;
+	cursor: none;
+	background-color: white;
+	z-index: 10;
 `;

@@ -10,7 +10,6 @@ import ShopItem from "../../components/shop-item/shop-item.component";
 import { ShopPageCont, ShopGrid } from "./shoppage.styles.js";
 
 const ShopPage = ({ shopItems }) => {
-	console.log("shoppage", shopItems);
 	return (
 		<ShopPageCont>
 			<ShopGrid>
