@@ -39,7 +39,7 @@ const CartItem = ({ item }) => {
 				<Detail>£{item.price}</Detail>
 				<QuantBinCont>
 					<QuantitySelector
-						type={"cart-item"}
+						type="cart-item"
 						item={item}
 						otherStyles={
 							"margin-bottom: 0; margin-top: 0; > input {background-color: transparent; color: white;} .incDec {:hover {background-color: white; color: black}} "

@@ -17,7 +17,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				cartItems: [...state.cartItems],
 			};
-		case cartActionTypes.UPDATE_QUANTITY:
+		case cartActionTypes.UPDATE_CART_QUANTITY:
 			return {
 				...state,
 				cartItems: updateQuantity(state.cartItems, action.payload),

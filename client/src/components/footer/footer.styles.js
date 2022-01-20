@@ -10,12 +10,8 @@ export const FooterCont = styled.div`
 	position: relative;
 	bottom: 0px;
 	padding: 20px;
-
-	background-color: ${({ invert }) => (invert ? "white" : "black")};
-
-	< div < a < img {
-		filter: invert ${({ invert }) => (invert ? "(0)" : "(1)")};
-	}
+	background-color: invert("black");
+	border-top: solid 2px white;
 `;
 
 export const InnerFooter = styled.div`

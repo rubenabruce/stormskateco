@@ -31,16 +31,16 @@ const ItemDetails = ({
 }) => {
 	let item = { id, name, price, images, size, quantity, priceId };
 	console.log("item-details: ", item);
-	// Checks to find if the current item has matching id and size to an item within the cart to know whether
-	// to add to cart item or add NEW cart item
-	let cartItem = cartItems
-		? cartItems.find(
-				(currentCartItem) =>
-					currentCartItem.id === item.id && currentCartItem.size === item.size
-		  )
-		: undefined;
 
 	const handleClick = () => {
+		// Checks to find if the current item has matching id and size to an item within the cart to know whether
+		// to add to cart item or add NEW cart item
+		let cartItem = cartItems
+			? cartItems.find(
+					(currentCartItem) =>
+						currentCartItem.id === item.id && currentCartItem.size === item.size
+			  )
+			: undefined;
 		// sizes[size] >= 1 checks if item is in stock
 		if (sizes[size] >= 1) {
 			if (cartItem) {
