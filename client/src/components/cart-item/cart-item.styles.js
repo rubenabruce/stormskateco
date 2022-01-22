@@ -11,6 +11,7 @@ export const CartItemCont = styled.div`
 
 export const ImageCont = styled.img`
 	height: 100%;
+	background-color: white;
 `;
 
 export const ItemDetails = styled.div`
@@ -18,6 +19,7 @@ export const ItemDetails = styled.div`
 	justify-content: space-between;
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 `;
 
 export const Detail = styled.p`
@@ -30,7 +32,7 @@ export const QuantBinCont = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-end;
-	margin-top: 20px;
+	margin-top: auto;
 `;
 
 export const BinCont = styled(BinSvg)`

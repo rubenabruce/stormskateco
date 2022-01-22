@@ -10,6 +10,10 @@ export const CartSliderCont = styled.div`
 	background-color: black;
 	color: white;
 	z-index: 10;
+
+	@media screen and (max-width: 800px) {
+		width: 100vw;
+	}
 `;
 
 export const CartTab = styled.div`
@@ -32,6 +36,9 @@ export const CartTab = styled.div`
 	&:hover {
 		background-color: #393939;
 	}
+	/* @media screen and (max-width: 800px) {
+		display: none;
+	} */
 `;
 
 export const CartItemsCont = styled.form`
@@ -48,9 +55,22 @@ export const CartItemsCont = styled.form`
 	}
 `;
 
+export const CartTitleCont = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
 export const CartTitle = styled.h2`
 	width: 100%;
 	text-align: center;
+`;
+
+export const MobileCartClose = styled.span`
+	@media screen and (min-width: 800px) {
+		display: none;
+	}
 `;
 
 export const HiddenInput = styled.input`

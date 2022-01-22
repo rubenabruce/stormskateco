@@ -14,7 +14,9 @@ import {
 	CartItemsCont,
 	CartSliderCont,
 	CartTab,
+	CartTitleCont,
 	CartTitle,
+	MobileCartClose,
 	EmptyMessage,
 	HiddenInput,
 } from "./cart-slider.styles";
@@ -44,7 +46,12 @@ const CartSlider = React.memo(function CartSlider({ cartItems, cartQuantity }) {
 			</CartTab>
 
 			<CartItemsCont action="/checkout" method="POST">
-				<CartTitle>Cart ({cartQuantity})</CartTitle>
+				<CartTitleCont>
+					<CartTitle>Cart ({cartQuantity})</CartTitle>
+					<MobileCartClose onClick={() => setIsOpen(false)}>
+						&#10005;
+					</MobileCartClose>
+				</CartTitleCont>
 				{cartItems.length ? (
 					cartItems.map((item) => (
 						<CartItem key={`${item.name}${item.size}`} item={item} />

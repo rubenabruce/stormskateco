@@ -12,6 +12,14 @@ export const FooterCont = styled.div`
 	padding: 20px;
 	background-color: invert("black");
 	border-top: solid 2px white;
+
+	@media screen and (max-width: 600px) {
+		height: 60px;
+	}
+
+	@media screen and (max-width: 400px) {
+		height: 45px;
+	}
 `;
 
 export const InnerFooter = styled.div`
@@ -22,6 +30,13 @@ export const InnerFooter = styled.div`
 	align-items: center;
 	> a {
 		height: 80%;
+	}
+
+	@media screen and (max-width: 800px) {
+		width: 80%;
+	}
+	@media screen and (max-width: 400px) {
+		width: 90%;
 	}
 `;
 
