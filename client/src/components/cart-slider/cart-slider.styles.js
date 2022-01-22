@@ -13,13 +13,14 @@ export const CartSliderCont = styled.div`
 
 	@media screen and (max-width: 800px) {
 		width: 100vw;
+		right: ${({ open }) => (open ? "0;" : "-100vw")};
 	}
 `;
 
 export const CartTab = styled.div`
 	width: 140px;
 	height: 100px;
-	background-color: black;
+	background-color: #000000a1;
 	left: ${({ visible }) => (visible ? "-110px" : "0px")};
 	transform: rotate(-90deg);
 	top: 45%;
@@ -34,11 +35,8 @@ export const CartTab = styled.div`
 	transition: all 300ms ease-in-out;
 
 	&:hover {
-		background-color: #393939;
+		background-color: black;
 	}
-	/* @media screen and (max-width: 800px) {
-		display: none;
-	} */
 `;
 
 export const CartItemsCont = styled.form`

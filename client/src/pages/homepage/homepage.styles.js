@@ -79,5 +79,6 @@ export const Option = styled.video`
 	@media screen and (max-width: 500px) {
 		max-width: 40vw;
 		max-height: 200px;
+		pointer-events: none;
 	}
 `;

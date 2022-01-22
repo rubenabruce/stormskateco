@@ -28,4 +28,8 @@ export const OptionBtn = styled.button`
 		color: white;
 		border-color: white;
 	}
+
+	@media screen and (max-width: 800px) {
+		pointer-events: none;
+	}
 `;

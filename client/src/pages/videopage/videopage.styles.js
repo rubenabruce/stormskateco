@@ -7,6 +7,10 @@ export const VideoPageCont = styled.div`
 	align-items: flex-start;
 	height: 100%;
 	padding: 4rem 0;
+
+	@media screen and (max-width: 800px) {
+		min-height: 95vh;
+	}
 `;
 
 export const VideosCont = styled.div`

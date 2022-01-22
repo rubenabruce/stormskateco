@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FooterCont = styled.div`
-	width: 100%;
+	/* width: 100%; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -14,11 +14,11 @@ export const FooterCont = styled.div`
 	border-top: solid 2px white;
 
 	@media screen and (max-width: 600px) {
-		height: 60px;
+		height: 50px;
 	}
 
 	@media screen and (max-width: 400px) {
-		height: 45px;
+		height: 42px;
 	}
 `;
 
