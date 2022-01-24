@@ -4,10 +4,11 @@ import { Link, useLocation } from "react-router-dom";
 import TShirtSpinWebm from "../../assets/spinningTwebm3.webm";
 import TShirtSpinPoster from "../../assets/spinningTPoster.png";
 
-import VXSpinWebm from "../../assets/spinningVXwebm.webm";
+import VXSpinWebm from "../../assets/vx3.webm";
 import VXSpinPoster from "../../assets/spinningVxPoster.png";
 
-import LogoSpinWebm from "../../assets/spinningLogowebm.webm";
+// import LogoSpinWebm from "../../assets/spinningLogowebm.webm";
+import LogoSpinWebm from "../../assets/storm-logo.webm";
 import LogoSpinPoster from "../../assets/spinningLogoPoster.png";
 
 import { HeaderCont } from "./header.styles.js";
