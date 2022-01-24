@@ -29,9 +29,9 @@ export const HomepageCont = styled.div`
 `;
 
 export const SpinningLogo = styled.video`
-	height: 80%;
+	height: 20%;
 	position: relative;
-	top: -10%;
+	top: 20%;
 
 	@media screen and (max-width: 1000px) {
 		height: unset;

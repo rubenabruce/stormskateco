@@ -10,7 +10,8 @@ import TextLogoSpinPoster from "../../assets/spinningTextLogoPoster.png";
 import TShirtSpinWebm from "../../assets/spinningTwebm3.webm";
 import TShirtSpinPoster from "../../assets/spinningTPoster.png";
 
-import VXSpinWebm from "../../assets/spinningVXwebm2.webm";
+// import VXSpinWebm from "../../assets/spinningVXwebm2.webm";
+import VXSpinWebm from "../../assets/vx3.webm";
 import VXSpinPoster from "../../assets/spinningVxPoster.png";
 
 import {
@@ -42,10 +43,10 @@ const Homepage = () => {
 				<SpinningLogo
 					className="spinningLogo"
 					poster={TextLogoSpinPoster}
-					autoPlay
 					id="spinLogo"
 					playsinline
 					playsInline
+					autoPlay
 					muted
 					loop
 					disablePictureInPicture
@@ -57,10 +58,10 @@ const Homepage = () => {
 						<Option
 							className="spinningVX option"
 							poster={VXSpinPoster}
-							autoPlay
 							id="spinVX"
 							playsinline
 							playsInline
+							autoPlay
 							muted
 							loop
 							disablePictureInPicture
@@ -72,10 +73,10 @@ const Homepage = () => {
 						<Option
 							className="spinningTshirt option"
 							poster={TShirtSpinPoster}
-							autoPlay
 							id="spinT"
 							playsinline
 							playsInline
+							autoPlay
 							muted
 							loop
 							disablePictureInPicture
