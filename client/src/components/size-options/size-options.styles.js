@@ -30,6 +30,7 @@ export const OptionBtn = styled.button`
 	}
 
 	@media screen and (max-width: 800px) {
-		pointer-events: none;
+		:hover {
+		}
 	}
 `;

@@ -22,8 +22,10 @@ const Header = () => {
 					autoPlay
 					id="spinVx"
 					playsInline
+					playsinline
 					muted
 					loop
+					disablePictureInPicture
 				>
 					<source src={VXSpinWebm} type="video/webm" />
 				</video>
@@ -34,8 +36,10 @@ const Header = () => {
 					autoPlay
 					id="spinLogo"
 					playsInline
+					playsinline
 					muted
 					loop
+					disablePictureInPicture
 				>
 					<source src={LogoSpinWebm} type="video/webm" />
 				</video>
@@ -46,10 +50,13 @@ const Header = () => {
 					autoPlay
 					id="spinT"
 					playsInline
+					playsinline
 					muted
 					loop
+					disablePictureInPicture
 				>
 					<source src={TShirtSpinWebm} type="video/webm" />
+					Sorry, your browser doesn't support embedded videos.
 				</video>
 			</Link>
 		</HeaderCont>

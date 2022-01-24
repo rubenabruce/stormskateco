@@ -3,7 +3,8 @@ import React from "react";
 import StormBackgroundVid from "../../assets/background-vid.mp4";
 import LightningPoster from "../../assets/lightningPoster.png";
 
-import TextLogoSpinWebm from "../../assets/spinningTextLogowebm.webm";
+// import TextLogoSpinWebm from "../../assets/spinningTextLogowebm.webm";
+import TextLogoSpinWebm from "../../assets/storm-text.webm";
 import TextLogoSpinPoster from "../../assets/spinningTextLogoPoster.png";
 
 import TShirtSpinWebm from "../../assets/spinningTwebm3.webm";
@@ -29,9 +30,11 @@ const Homepage = () => {
 				poster={LightningPoster}
 				id="bgvid"
 				playsinline
+				playsInline
 				autoPlay
 				muted
 				loop
+				disablePictureInPicture
 			>
 				<source src={StormBackgroundVid} type="video/mp4" />
 			</BackgroundVid>
@@ -42,8 +45,10 @@ const Homepage = () => {
 					autoPlay
 					id="spinLogo"
 					playsinline
+					playsInline
 					muted
 					loop
+					disablePictureInPicture
 				>
 					<source src={TextLogoSpinWebm} type="video/webm" />
 				</SpinningLogo>
@@ -55,8 +60,10 @@ const Homepage = () => {
 							autoPlay
 							id="spinVX"
 							playsinline
+							playsInline
 							muted
 							loop
+							disablePictureInPicture
 						>
 							<source src={VXSpinWebm} type="video/webm" />
 						</Option>
@@ -68,8 +75,10 @@ const Homepage = () => {
 							autoPlay
 							id="spinT"
 							playsinline
+							playsInline
 							muted
 							loop
+							disablePictureInPicture
 						>
 							<source src={TShirtSpinWebm} type="video/webm" />
 						</Option>

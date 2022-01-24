@@ -58,7 +58,7 @@ class ShopRoutes extends React.Component {
 
 		console.log(location);
 		return (
-			<div>
+			<div id="shopRoutes">
 				<Routes>
 					<Route
 						exact
