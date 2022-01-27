@@ -66,6 +66,9 @@ export const CartTitle = styled.h2`
 `;
 
 export const MobileCartClose = styled.span`
+	position: absolute;
+	right: 10%;
+
 	@media screen and (min-width: 800px) {
 		display: none;
 	}

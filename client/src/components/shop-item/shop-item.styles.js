@@ -12,6 +12,16 @@ export const ShopItemCont = styled.div`
 			}
 		}
 	}
+
+	@media screen and (max-width: 800px) {
+		&:hover {
+			.item-image-cont {
+				.name-price-cont {
+					opacity: 0;
+				}
+			}
+		}
+	}
 `;
 
 export const ItemImageCont = styled.div`
@@ -23,9 +33,9 @@ export const ItemImageCont = styled.div`
 	background-size: cover;
 	background-position: center;
 
-	@media screen and (max-width: 600px) {
+	@media screen and (max-width: 800px) {
 		height: 40vw;
-	} ;;;
+	} ;
 `;
 
 export const NamePriceCont = styled.div`

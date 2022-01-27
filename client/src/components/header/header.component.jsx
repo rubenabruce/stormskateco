@@ -11,14 +11,14 @@ import VXSpinPoster from "../../assets/spinningVxPoster.png";
 import LogoSpinWebm from "../../assets/storm-logo.webm";
 import LogoSpinPoster from "../../assets/spinningLogoPoster.png";
 
-import { HeaderCont } from "./header.styles.js";
+import { HeaderCont, HeaderVideos, TshirtVid } from "./header.styles.js";
 
 const Header = () => {
 	let location = useLocation();
 	return (
 		<HeaderCont invert={location.pathname.includes("/shop")}>
 			<Link to="/videos">
-				<video
+				<HeaderVideos
 					poster={VXSpinPoster}
 					autoPlay
 					id="spinVx"
@@ -29,10 +29,11 @@ const Header = () => {
 					disablePictureInPicture
 				>
 					<source src={VXSpinWebm} type="video/webm" />
-				</video>
+					Sorry, your browser doesn't support embedded videos.
+				</HeaderVideos>
 			</Link>
 			<Link to="/">
-				<video
+				<HeaderVideos
 					poster={LogoSpinPoster}
 					autoPlay
 					id="spinLogo"
@@ -43,11 +44,13 @@ const Header = () => {
 					disablePictureInPicture
 				>
 					<source src={LogoSpinWebm} type="video/webm" />
-				</video>
+					Sorry, your browser doesn't support embedded videos.
+				</HeaderVideos>
 			</Link>
 			<Link to="/shop">
-				<video
+				<TshirtVid
 					poster={TShirtSpinPoster}
+					cla
 					autoPlay
 					id="spinT"
 					playsInline
@@ -58,7 +61,7 @@ const Header = () => {
 				>
 					<source src={TShirtSpinWebm} type="video/webm" />
 					Sorry, your browser doesn't support embedded videos.
-				</video>
+				</TshirtVid>
 			</Link>
 		</HeaderCont>
 	);

@@ -34,7 +34,6 @@ export const SpinningLogo = styled.video`
 	top: 20%;
 
 	@media screen and (max-width: 1000px) {
-		height: unset;
 		width: 100%;
 		top: unset;
 		margin-top: 0vh;
@@ -50,6 +49,10 @@ export const OptionsCont = styled.div`
 	position: absolute;
 	bottom: 20%;
 
+	> a {
+		height: 100%;
+	}
+
 	& .spinningTshirt {
 		margin-right: 100px;
 		margin-top: 20px;
@@ -60,6 +63,7 @@ export const OptionsCont = styled.div`
 		height: unset;
 		position: relative;
 		bottom: 0;
+		margin-top: 10vh;
 		/* display: contents; */
 
 		& .spinningTshirt {

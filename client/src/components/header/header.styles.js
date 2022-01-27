@@ -22,11 +22,19 @@ export const HeaderCont = styled.div`
 	}
 
 	& > a > video {
-		height: 100%;
 		filter: ${({ invert }) => (invert ? "invert(1)" : "invert(0)")};
 
 		:hover {
 			filter: ${({ invert }) => (invert ? "invert(0)" : "invert(1)")};
 		}
 	}
+`;
+
+export const HeaderVideos = styled.video`
+	height: 85%;
+`;
+
+export const TshirtVid = styled.video`
+	margin-top: 10px;
+	height: 100%;
 `;
