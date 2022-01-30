@@ -6,7 +6,7 @@ export const FooterCont = styled.div`
 	justify-content: center;
 	align-items: center;
 	background-color: black;
-	height: 80px;
+	height: 9vh;
 	position: relative;
 	bottom: 0px;
 	padding: 20px;

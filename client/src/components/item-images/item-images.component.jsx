@@ -27,8 +27,8 @@ const ItemImages = ({ images, imageAlt }) => {
 				animation="scaleOutAnimation"
 				cssModule={[CoreStyles, AwesomeSliderStyles]}
 			>
-				{imageUrls.map((image) => (
-					<MainImage data-src={image} alt={imageAlt} key={uuidv4()} />
+				{imageUrls.map((image, index) => (
+					<MainImage data-src={image} alt={imageAlt} key={uuidv4(index)} />
 				))}
 			</AwesomeSlider>
 		</ItemImagesCont>

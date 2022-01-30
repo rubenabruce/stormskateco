@@ -11,6 +11,7 @@ export const ItemImagesCont = styled.div`
 		--organic-arrow-color: black;
 		--control-bullet-color: #636363;
 		--control-bullet-active-color: black;
+		--loader-bar-color: #001725;
 
 		.awssld__content {
 			background-color: white;
@@ -32,7 +33,7 @@ export const ItemImagesCont = styled.div`
 	}
 `;
 
-export const MainImage = styled.img`
+export const MainImage = styled.div`
 	width: 100%;
 	background-color: transparent;
 `;

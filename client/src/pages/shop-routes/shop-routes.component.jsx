@@ -10,6 +10,7 @@ import WithSpinner from "../../components/with-spinner/with-spinner.component";
 import ShopPage from "../shoppage/shoppage.component";
 import ShopItemPage from "../item-page/item-page.component";
 import CartSlider from "../../components/cart-slider/cart-slider.component";
+import NotFound from "../not-found/not-found.component";
 
 const ShopPageWithSpinner = WithSpinner(ShopPage);
 const ShopItemPageWithSpinner = WithSpinner(ShopItemPage);
@@ -74,6 +75,7 @@ class ShopRoutes extends React.Component {
 							/>
 						}
 					/>
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 				{loading ? null : <CartSlider />}
 			</div>

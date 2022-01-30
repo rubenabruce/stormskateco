@@ -6,6 +6,7 @@ import Footer from "./components/footer/footer.component";
 import Header from "./components/header/header.component";
 
 import Homepage from "./pages/homepage/homepage.component";
+import NotFound from "./pages/not-found/not-found.component";
 import ShopRoutes from "./pages/shop-routes/shop-routes.component";
 import SuccessPage from "./pages/success-page/success-page.component";
 import VideoPage from "./pages/videopage/videopage.component";
@@ -21,6 +22,7 @@ function App() {
 				<Route path="/shop/*" element={<ShopRoutes location={location} />} />
 				<Route path="/success" element={<SuccessPage />} />
 				<Route path="/videos" element={<VideoPage />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<Footer />
 		</div>
