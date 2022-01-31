@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -7,13 +7,20 @@ import { firestore } from "../../firebase/firebase.utils";
 import { updateShopItems } from "../../redux/shop/shop.actions";
 
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
-import ShopPage from "../shoppage/shoppage.component";
-import ShopItemPage from "../item-page/item-page.component";
+// import ShopPage from "../shoppage/shoppage.component";
+// import ShopItemPage from "../item-page/item-page.component";
 import CartSlider from "../../components/cart-slider/cart-slider.component";
 import NotFoundPage from "../not-found-page/not-found-page.component";
+import SuspenseComponent from "../../components/suspense-component/suspense.component";
+
+const ShopPage = lazy(() => import("../shoppage/shoppage.component"));
+const ShopItemPage = lazy(() => import("../item-page/item-page.component"));
 
 const ShopPageWithSpinner = WithSpinner(ShopPage);
 const ShopItemPageWithSpinner = WithSpinner(ShopItemPage);
+
+const SuspendedShopPage = SuspenseComponent(ShopPageWithSpinner);
+const SuspendedShopItemPage = SuspenseComponent(ShopItemPageWithSpinner);
 
 class ShopRoutes extends React.Component {
 	state = {
@@ -64,15 +71,12 @@ class ShopRoutes extends React.Component {
 					<Route
 						exact
 						path={``}
-						element={<ShopPageWithSpinner isLoading={loading} />}
+						element={<SuspendedShopPage isLoading={loading} />}
 					/>
 					<Route
 						path={`:id`}
 						element={
-							<ShopItemPageWithSpinner
-								isLoading={loading}
-								location={location}
-							/>
+							<SuspendedShopItemPage isLoading={loading} location={location} />
 						}
 					/>
 					<Route path="*" element={<NotFoundPage />} />
