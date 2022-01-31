@@ -7,9 +7,9 @@ import {
 	OverText,
 	TextCont,
 	UnderText,
-} from "./not-found.styles";
+} from "./not-found-page.styles";
 
-const NotFound = () => {
+const NotFoundPage = () => {
 	return (
 		<NotFoundCont>
 			<TextCont>
@@ -23,4 +23,4 @@ const NotFound = () => {
 	);
 };
 
-export default NotFound;
+export default NotFoundPage;

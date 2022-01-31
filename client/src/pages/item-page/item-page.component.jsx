@@ -12,6 +12,9 @@ import { ItemPageCont, MainItem } from "./item-page.styles";
 const ShopItemPage = ({ item }) => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		if (!item) {
+			return Error;
+		}
 	}, [item]);
 
 	return (
