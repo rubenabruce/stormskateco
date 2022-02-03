@@ -70,7 +70,7 @@ app.post(
 		const session = await stripe.checkout.sessions.create({
 			payment_method_types: ["card"],
 			shipping_address_collection: {
-				allowed_countries: ["GB"],
+				allowed_countries: ["GB", "US", "FR", "BE", "CA", "DE", "GG", "NL"],
 			},
 			shipping_options: [
 				{
@@ -80,7 +80,7 @@ app.post(
 							amount: 0,
 							currency: "gbp",
 						},
-						display_name: "Free shipping",
+						display_name: "Free shipping (UK)",
 						// Delivers between 5-7 business days
 						delivery_estimate: {
 							minimum: {
@@ -98,10 +98,10 @@ app.post(
 					shipping_rate_data: {
 						type: "fixed_amount",
 						fixed_amount: {
-							amount: 1500,
+							amount: 800,
 							currency: "gbp",
 						},
-						display_name: "Next day",
+						display_name: "Next day (UK)",
 						// Delivers in exactly 1 business day
 						delivery_estimate: {
 							minimum: {
@@ -110,6 +110,27 @@ app.post(
 							},
 							maximum: {
 								unit: "business_day",
+								value: 2,
+							},
+						},
+					},
+				},
+				{
+					shipping_rate_data: {
+						type: "fixed_amount",
+						fixed_amount: {
+							amount: 1500,
+							currency: "gbp",
+						},
+						display_name: "International",
+						// Delivers in exactly 1 business day
+						delivery_estimate: {
+							minimum: {
+								unit: "week",
+								value: 1,
+							},
+							maximum: {
+								unit: "week",
 								value: 2,
 							},
 						},
@@ -131,10 +152,10 @@ const fulfillOrder = async (session) => {
 	console.log("Fulfilling order", session);
 	// TODO: Send email to reciptient - will be done by stripe automatically
 
-	const docRef = db.collection("orders").doc(session.id);
+	const orderRef = db.collection("orders").doc(session.id);
 
 	try {
-		await docRef.set({
+		await orderRef.set({
 			totalPaid: session.amount_total,
 			subTotal: session.amount_subtotal,
 			currency: session.currency,
@@ -202,7 +223,7 @@ app.post(
 				// you're still waiting for funds to be transferred from the customer's
 				// account.
 				if (session.payment_status === "paid") {
-					fulfillOrder(session);
+					fulfillOrder(session, payload);
 				}
 
 				break;
