@@ -164,7 +164,7 @@ const emailCustomerAboutFailedPayment = (session) => {
 
 app.post(
 	"/webhook",
-	bodyParser.raw({ type: "application/json" }),
+	express.raw({ type: "application/json" }),
 	(request, response) => {
 		const payload = request.body;
 		const sig = request.headers["stripe-signature"];
@@ -185,7 +185,8 @@ app.post(
 			console.log("event:", event);
 		} catch (err) {
 			console.error("error message: ", err);
-			return response.status(400).send(`Webhook Error: ${err.message}`);
+			response.status(400).send(`Webhook Error: ${err.message}`);
+			return;
 		}
 
 		// Handle the checkout.session.completed event
