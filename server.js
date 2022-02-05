@@ -63,86 +63,97 @@ app.post(
 	async (req, res) => {
 		// parsing from string to array with objects inside
 		const cartItems = await JSON.parse(req.body.cartItems);
-		const lineItems = cartItems.map((item) => ({
-			price: item.priceId,
-			quantity: item.quantity,
-		}));
-		const session = await stripe.checkout.sessions.create({
-			payment_method_types: ["card"],
-			shipping_address_collection: {
-				allowed_countries: ["GB", "US", "FR", "BE", "CA", "DE", "GG", "NL"],
-			},
-			shipping_options: [
-				{
-					shipping_rate_data: {
-						type: "fixed_amount",
-						fixed_amount: {
-							amount: 0,
-							currency: "gbp",
-						},
-						display_name: "Free shipping (UK)",
-						// Delivers between 5-7 business days
-						delivery_estimate: {
-							minimum: {
-								unit: "business_day",
-								value: 5,
+		let lineItems = [];
+		try {
+			for (let item of cartItems) {
+				const price = await stripe.prices.update(item.priceId, {
+					metadata: { size: item.size },
+				});
+				console.log(price);
+				lineItems.push({
+					price: price.id,
+					quantity: item.quantity,
+				});
+			}
+			const session = await stripe.checkout.sessions.create({
+				payment_method_types: ["card"],
+				shipping_address_collection: {
+					allowed_countries: ["GB", "US", "FR", "BE", "CA", "DE", "GG", "NL"],
+				},
+				shipping_options: [
+					{
+						shipping_rate_data: {
+							type: "fixed_amount",
+							fixed_amount: {
+								amount: 0,
+								currency: "gbp",
 							},
-							maximum: {
-								unit: "business_day",
-								value: 7,
+							display_name: "Free shipping (UK)",
+							// Delivers between 5-7 business days
+							delivery_estimate: {
+								minimum: {
+									unit: "business_day",
+									value: 5,
+								},
+								maximum: {
+									unit: "business_day",
+									value: 7,
+								},
 							},
 						},
 					},
-				},
-				{
-					shipping_rate_data: {
-						type: "fixed_amount",
-						fixed_amount: {
-							amount: 800,
-							currency: "gbp",
-						},
-						display_name: "Next day (UK)",
-						// Delivers in exactly 1 business day
-						delivery_estimate: {
-							minimum: {
-								unit: "business_day",
-								value: 1,
+					{
+						shipping_rate_data: {
+							type: "fixed_amount",
+							fixed_amount: {
+								amount: 800,
+								currency: "gbp",
 							},
-							maximum: {
-								unit: "business_day",
-								value: 2,
-							},
-						},
-					},
-				},
-				{
-					shipping_rate_data: {
-						type: "fixed_amount",
-						fixed_amount: {
-							amount: 1500,
-							currency: "gbp",
-						},
-						display_name: "International",
-						// Delivers in exactly 1 business day
-						delivery_estimate: {
-							minimum: {
-								unit: "week",
-								value: 1,
-							},
-							maximum: {
-								unit: "week",
-								value: 2,
+							display_name: "Next day (UK)",
+							// Delivers in exactly 1 business day
+							delivery_estimate: {
+								minimum: {
+									unit: "business_day",
+									value: 1,
+								},
+								maximum: {
+									unit: "business_day",
+									value: 2,
+								},
 							},
 						},
 					},
-				},
-			],
-			line_items: [...lineItems],
-			mode: "payment",
-			success_url: `${StormSkateCo}/success`,
-			cancel_url: `${StormSkateCo}/shop`,
-		});
-		res.redirect(303, session.url);
+					{
+						shipping_rate_data: {
+							type: "fixed_amount",
+							fixed_amount: {
+								amount: 1500,
+								currency: "gbp",
+							},
+							display_name: "International",
+							// Delivers in exactly 1 business day
+							delivery_estimate: {
+								minimum: {
+									unit: "week",
+									value: 1,
+								},
+								maximum: {
+									unit: "week",
+									value: 2,
+								},
+							},
+						},
+					},
+				],
+				line_items: [...lineItems],
+				mode: "payment",
+				success_url: `${StormSkateCo}/success`,
+				cancel_url: `${StormSkateCo}/shop`,
+			});
+			res.redirect(303, session.url);
+		} catch (e) {
+			console.log(e);
+		}
 	}
 );
 
@@ -152,24 +163,56 @@ const fulfillOrder = async (session) => {
 	console.log("Fulfilling order", session);
 	// TODO: Send email to reciptient - will be done by stripe automatically
 
+	// Reference to database
 	const orderRef = db.collection("orders").doc(session.id);
 
-	try {
-		await orderRef.set({
-			totalPaid: session.amount_total,
-			subTotal: session.amount_subtotal,
-			currency: session.currency,
-			customerDetails: { ...session.customer_details },
-			paymentIntent: session.payment_intent,
-			paymentStatus: session.payment_status,
-			shipping: { ...session.shipping },
-			stripeStatus: session.status,
-		});
-		console.log("I think it worked");
-	} catch {
-		console.log("Error occured when setting order data");
-	}
+	// Retrieving the items which have just been bought using the current session ID
+	stripe.checkout.sessions.listLineItems(session.id, async (err, lineItems) => {
+		if (err) {
+			console.log(err);
+			return err;
+		} else {
+			try {
+				// Adding order reference to database
+				await orderRef.set({
+					totalPaid: session.amount_total,
+					subTotal: session.amount_subtotal,
+					currency: session.currency,
+					customerDetails: { ...session.customer_details },
+					paymentIntent: session.payment_intent,
+					paymentStatus: session.payment_status,
+					shipping: { ...session.shipping },
+					stripeStatus: session.status,
+					items: lineItems.data,
+				});
+				console.log("Order sucessfully added to database");
+			} catch {
+				console.log("Error occured when adding order to database");
+			}
+			try {
+				// Updating stock
 
+				lineItems.data.forEach(async (item) => {
+					console.log("item", item);
+					let firestoreItemRef = db.collection("shop").doc(item.price.product);
+					let firestoreItemDoc = await (await firestoreItemRef.get()).data();
+					console.log("firestoreItemDoc", firestoreItemDoc);
+					let res = await firestoreItemRef.update({
+						sizes: {
+							...firestoreItemDoc.sizes,
+							[item.price.metadata.size]:
+								[firestoreItemDoc.sizes[item.price.metadata.size]] -
+								item.quantity,
+						},
+					});
+					console.log(res);
+				});
+			} catch {
+				console.log("Error occured when updating stock.");
+			}
+		}
+	});
+	// TODO: Update stock in database
 	// TODO: Send email to chilli
 };
 
@@ -223,7 +266,7 @@ app.post(
 				// you're still waiting for funds to be transferred from the customer's
 				// account.
 				if (session.payment_status === "paid") {
-					fulfillOrder(session, payload);
+					fulfillOrder(session);
 				}
 
 				break;

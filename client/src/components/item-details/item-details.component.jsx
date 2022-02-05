@@ -23,13 +23,33 @@ import {
 } from "./item-details.styles";
 
 const ItemDetails = ({
-	item: { id, name, price, images, sizes, priceId, description },
+	item: {
+		id,
+		name,
+		price,
+		images,
+		sizes,
+		priceId,
+		description,
+		firestoreId,
+		prodId,
+	},
 	size,
 	quantity,
 	addItem,
 	cartItems,
 }) => {
-	let item = { id, name, price, images, size, quantity, priceId };
+	let item = {
+		id,
+		name,
+		price,
+		images,
+		size,
+		quantity,
+		priceId,
+		firestoreId,
+		prodId,
+	};
 
 	const handleClick = () => {
 		// Checks to find if the current item has matching id and size to an item within the cart to know whether
