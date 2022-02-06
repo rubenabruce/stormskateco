@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useDispatch } from "react-redux";
+
+import { clearAllFromCart } from "../../redux/cart/cart.actions";
 
 // import SpinningLogoGif from "../../assets/stormLogoGif.gif";
 import LogoSpinWebm from "../../assets/spinningLogowebm.webm";
@@ -12,6 +16,12 @@ import {
 } from "./success-page.styles";
 
 const SuccessPage = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(clearAllFromCart());
+	});
+
 	return (
 		<SuccessPageCont>
 			<ContentCont>

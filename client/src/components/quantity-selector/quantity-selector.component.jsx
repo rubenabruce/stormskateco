@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { updateCartItemQuantity } from "../../redux/cart/cart.actions";
 import { updateShopItemQuantity } from "../../redux/shop-item/shop-item.actions";
+import { selectSize } from "../../redux/shop-item/shop-item.selector";
 import { selectShopItemById } from "../../redux/shop/shop.selector.js";
 
 import {
@@ -14,12 +15,16 @@ import {
 const QuantitySelector = ({
 	type,
 	item,
+	itemSize,
 	shopItem: { sizes },
 	updateCartItemQuantity,
 	updateShopItemQuantity,
 	...props
 }) => {
 	const [quantity, setQuantity] = useState(item ? item.quantity : 1);
+	useLayoutEffect(() => {
+		setQuantity(1);
+	}, [itemSize]);
 
 	const handleDecrease = () => {
 		if (quantity > 1) {
@@ -58,6 +63,7 @@ const QuantitySelector = ({
 
 const mapStateToProps = (state, ownProps) => ({
 	shopItem: selectShopItemById(ownProps.item.id)(state),
+	itemSize: selectSize(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
