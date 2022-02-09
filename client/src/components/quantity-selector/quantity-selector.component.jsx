@@ -22,6 +22,7 @@ const QuantitySelector = ({
 	...props
 }) => {
 	const [quantity, setQuantity] = useState(item ? item.quantity : 1);
+
 	useLayoutEffect(() => {
 		setQuantity(1);
 	}, [itemSize]);
