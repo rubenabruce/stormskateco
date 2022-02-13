@@ -68,15 +68,19 @@ const CartSlider = React.memo(function CartSlider({ cartItems, cartQuantity }) {
 				/>
 				{cartItems.length ? (
 					<CustomButton
+						disabled
 						inverted
 						style={{ width: "90%", margin: "20px 0 60px 0" }}
 						type="submit"
 					>
-						GO TO CHECKOUT
+						CHECKOUT DISABLED
 					</CustomButton>
 				) : (
 					""
 				)}
+				<p style={{ textAlign: "center", fontWeight: "bold" }}>
+					Work is being done under the hood. Please come back in a few days.
+				</p>
 			</CartItemsCont>
 		</CartSliderCont>
 	);
